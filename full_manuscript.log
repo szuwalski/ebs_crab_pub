@@ -1,0 +1,1029 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.1)  5 JUL 2026 22:42
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**full_manuscript.tex
+(./full_manuscript.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-10-24>
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count283
+\Gm@cntv=\count284
+\c@Gm@tempcnt=\count285
+\Gm@bindingoffset=\dimen149
+\Gm@wd@mp=\dimen150
+\Gm@odd@mp=\dimen151
+\Gm@even@mp=\dimen152
+\Gm@layoutwidth=\dimen153
+\Gm@layoutheight=\dimen154
+\Gm@layouthoffset=\dimen155
+\Gm@layoutvoffset=\dimen156
+\Gm@dimlist=\toks18
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2025/07/09 v2.17z AMS math features
+\@mathmargin=\skip51
+For additional information on amsmath, use the `?' option.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen157
+)) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen158
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count286
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count287
+\leftroot@=\count288
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count289
+\DOTSCASE@=\count290
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen159
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count291
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count292
+\dotsspace@=\muskip17
+\c@parentequation=\count293
+\dspbrk@lvl=\count294
+\tag@help=\toks20
+\row@=\count295
+\column@=\count296
+\maxfields@=\count297
+\andhelp@=\toks21
+\eqnshift@=\dimen160
+\alignsep@=\dimen161
+\tagshift@=\dimen162
+\tagwidth@=\dimen163
+\totwidth@=\dimen164
+\lineht@=\dimen165
+\@envbody=\toks22
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks24
+\inpenc@posthook=\toks25
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
+Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
+\LTleft=\skip54
+\LTright=\skip55
+\LTpre=\skip56
+\LTpost=\skip57
+\LTchunksize=\count298
+\LTcapwidth=\dimen166
+\LT@head=\box55
+\LT@firsthead=\box56
+\LT@foot=\box57
+\LT@lastfoot=\box58
+\LT@gbox=\box59
+\LT@cols=\count299
+\LT@rows=\count300
+\c@LT@tables=\count301
+\c@LT@chunks=\count302
+\LT@p@ftn=\toks26
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen167
+\lightrulewidth=\dimen168
+\cmidrulewidth=\dimen169
+\belowrulesep=\dimen170
+\belowbottomsep=\dimen171
+\aboverulesep=\dimen172
+\abovetopsep=\dimen173
+\cmidrulesep=\dimen174
+\cmidrulekern=\dimen175
+\defaultaddspace=\dimen176
+\@cmidla=\count303
+\@cmidlb=\count304
+\@aboverulesep=\dimen177
+\@belowrulesep=\dimen178
+\@thisruleclass=\count305
+\@lastruleclass=\count306
+\@thisrulewidth=\dimen179
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/array.sty
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen180
+\ar@mcellbox=\box60
+\extrarowheight=\dimen181
+\NC@list=\toks27
+\extratabsurround=\skip58
+\backup@length=\skip59
+\ar@cellbox=\box61
+)
+\c@none=\count307
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
+\calc@Acount=\count308
+\calc@Bcount=\count309
+\calc@Adimen=\dimen182
+\calc@Bdimen=\dimen183
+\calc@Askip=\skip60
+\calc@Bskip=\skip61
+LaTeX Info: Redefining \setlength on input line 86.
+LaTeX Info: Redefining \addtolength on input line 87.
+\calc@Ccount=\count310
+\calc@Cskip=\skip62
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count311
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
+Package: footnote 1997/01/28 1.13 Save footnotes around boxes
+\fn@notes=\box62
+\fn@width=\dimen184
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+)
+\Gin@req@height=\dimen185
+\Gin@req@width=\dimen186
+)
+\pandoc@box=\box63
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2025/05/13 line numbers on paragraphs v5.5
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+))
+\linenopenalty=\count312
+\output=\toks28
+\linenoprevgraf=\count313
+\linenumbersep=\dimen187
+\linenumberwidth=\dimen188
+\c@linenumber=\count314
+\c@pagewiselinenumber=\count315
+\c@LN@truepage=\count316
+\c@internallinenumber=\count317
+\c@internallinenumbers=\count318
+\quotelinenumbersep=\dimen189
+\bframerule=\dimen190
+\bframesep=\dimen191
+\bframebox=\box64
+\@LN@amsmath@ams@eqpen=\count319
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count320
+\float@exts=\toks29
+\float@box=\box65
+\@float@everytoks=\toks30
+\@floatcapt=\box66
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
+Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count321
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
+)
+\@linkdim=\dimen192
+\Hy@linkcounter=\count322
+\Hy@pagecounter=\count323
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count324
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Option `unicode' set `true' on input line 4066.
+Package hyperref Info: Hyper figures OFF on input line 4195.
+Package hyperref Info: Link nesting OFF on input line 4200.
+Package hyperref Info: Hyper index ON on input line 4203.
+Package hyperref Info: Plain pages OFF on input line 4210.
+Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4462.
+\c@Hy@tempcnt=\count325
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4801.
+\XeTeXLinkMargin=\dimen193
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
+))
+\Fld@menulength=\count326
+\Field@Width=\dimen194
+\Fld@charsize=\dimen195
+Package hyperref Info: Hyper figures OFF on input line 6078.
+Package hyperref Info: Link nesting OFF on input line 6083.
+Package hyperref Info: Hyper index ON on input line 6086.
+Package hyperref Info: backreferencing OFF on input line 6093.
+Package hyperref Info: Link coloring OFF on input line 6098.
+Package hyperref Info: Link coloring with OCG OFF on input line 6103.
+Package hyperref Info: PDF/A mode OFF on input line 6108.
+\Hy@abspage=\count327
+\c@Item=\count328
+\c@Hfootnote=\count329
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
+\Fld@listcount=\count330
+\c@bookmark@seq@number=\count331
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
+)
+\Hy@SectionHShift=\skip63
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
+File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO)
+\BKM@id=\count332
+))
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 85.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) (c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count333
+) (./full_manuscript.aux)
+\openout1 = `full_manuscript.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=469.75502pt
+* \textheight=650.43001pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package hyperref Info: Link coloring OFF on input line 85.
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 87.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmss.fd
+File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 87.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 87.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 87.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 87.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 87.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 87.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 87.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 87.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 87.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (./full_manuscript.toc
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 4.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 4.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 4.
+
+
+[1
+
+{c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}])
+\tf@toc=\write3
+\openout3 = `full_manuscript.toc'.
+
+
+
+[2]
+
+[3]
+
+[4]
+
+[5{c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
+
+[6{c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
+
+[7]
+
+[8]
+
+LaTeX Warning: Reference `' on page 9 undefined on input line 546.
+
+
+LaTeX Warning: Reference `' on page 9 undefined on input line 551.
+
+
+
+[9]
+
+[10]
+
+[11]
+
+LaTeX Warning: Reference `' on page 12 undefined on input line 733.
+
+
+
+[12]
+
+[13]
+
+[14]
+
+[15]
+<plots/fig_1.png, id=269, 867.24pt x 578.16pt>
+File: plots/fig_1.png Graphic file (type png)
+<use plots/fig_1.png>
+Package pdftex.def Info: plots/fig_1.png  used on input line 1004.
+(pdftex.def)             Requested size: 469.75502pt x 313.17216pt.
+
+
+[16 <./plots/fig_1.png (PNG copy)>]
+<plots/fig_4.png, id=274, 578.16pt x 433.62pt>
+File: plots/fig_4.png Graphic file (type png)
+<use plots/fig_4.png>
+Package pdftex.def Info: plots/fig_4.png  used on input line 1010.
+(pdftex.def)             Requested size: 469.75502pt x 352.31538pt.
+
+
+[17 <./plots/fig_4.png>]
+<plots/fig_2.png, id=280, 578.16pt x 433.62pt>
+File: plots/fig_2.png Graphic file (type png)
+<use plots/fig_2.png>
+Package pdftex.def Info: plots/fig_2.png  used on input line 1016.
+(pdftex.def)             Requested size: 469.75502pt x 352.31538pt.
+
+
+[18 <./plots/fig_2.png (PNG copy)>]
+<plots/fig_3.png, id=285, 650.43pt x 433.62pt>
+File: plots/fig_3.png Graphic file (type png)
+<use plots/fig_3.png>
+Package pdftex.def Info: plots/fig_3.png  used on input line 1022.
+(pdftex.def)             Requested size: 469.75502pt x 313.17879pt.
+
+
+[19 <./plots/fig_3.png (PNG copy)>]
+<plots_select/all_mort_all3.png, id=291, 433.62pt x 650.43pt>
+File: plots_select/all_mort_all3.png Graphic file (type png)
+<use plots_select/all_mort_all3.png>
+Package pdftex.def Info: plots_select/all_mort_all3.png  used on input line 1028.
+(pdftex.def)             Requested size: 469.75502pt x 704.66716pt.
+
+Overfull \vbox (114.18158pt too high) has occurred while \output is active []
+
+
+
+[20 <./plots_select/all_mort_all3.png (PNG copy)>]
+<plots/fig_6.png, id=296, 867.24pt x 505.89pt>
+File: plots/fig_6.png Graphic file (type png)
+<use plots/fig_6.png>
+Package pdftex.def Info: plots/fig_6.png  used on input line 1034.
+(pdftex.def)             Requested size: 469.75502pt x 274.02563pt.
+
+
+[21 <./plots/fig_6.png (PNG copy)>]
+<plots/figure2alt.png, id=301, 578.16pt x 361.35pt>
+File: plots/figure2alt.png Graphic file (type png)
+<use plots/figure2alt.png>
+Package pdftex.def Info: plots/figure2alt.png  used on input line 1040.
+(pdftex.def)             Requested size: 469.75502pt x 293.59616pt.
+
+
+[22 <./plots/figure2alt.png (PNG copy)>]
+<plots/yield_curv6_stock.png, id=306, 794.97pt x 505.89pt>
+File: plots/yield_curv6_stock.png Graphic file (type png)
+<use plots/yield_curv6_stock.png>
+Package pdftex.def Info: plots/yield_curv6_stock.png  used on input line 1046.
+(pdftex.def)             Requested size: 469.75502pt x 298.94337pt.
+
+
+[23 <./plots/yield_curv6_stock.png (PNG copy)>]
+
+LaTeX Warning: Reference `chio_over' on page 24 undefined on input line 1071.
+
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1101.
+(c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+
+[24{c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+
+[25]
+
+[26]
+<plots/rkc_cors.png, id=399, 939.51pt x 939.51pt>
+File: plots/rkc_cors.png Graphic file (type png)
+<use plots/rkc_cors.png>
+Package pdftex.def Info: plots/rkc_cors.png  used on input line 1213.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[27 <./plots/rkc_cors.png (PNG copy)>]
+File: plots/rkc_cors.png Graphic file (type png)
+<use plots/rkc_cors.png>
+Package pdftex.def Info: plots/rkc_cors.png  used on input line 1219.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[28]
+<plots/model_crossval_pred.png, id=411, 433.62pt x 722.7pt>
+File: plots/model_crossval_pred.png Graphic file (type png)
+<use plots/model_crossval_pred.png>
+Package pdftex.def Info: plots/model_crossval_pred.png  used on input line 1225.
+(pdftex.def)             Requested size: 469.75502pt x 782.9635pt.
+
+Overfull \vbox (168.47792pt too high) has occurred while \output is active []
+
+
+
+[29 <./plots/model_crossval_pred.png (PNG copy)>]
+<plots/model_crossval.png, id=416, 433.62pt x 433.62pt>
+File: plots/model_crossval.png Graphic file (type png)
+<use plots/model_crossval.png>
+Package pdftex.def Info: plots/model_crossval.png  used on input line 1231.
+(pdftex.def)             Requested size: 469.75502pt x 469.7781pt.
+
+
+[30 <./plots/model_crossval.png>]
+<plots/dharma_mSnow_imm.png, id=422, 578.16pt x 433.62pt>
+File: plots/dharma_mSnow_imm.png Graphic file (type png)
+<use plots/dharma_mSnow_imm.png>
+Package pdftex.def Info: plots/dharma_mSnow_imm.png  used on input line 1237.
+(pdftex.def)             Requested size: 469.75502pt x 352.31538pt.
+
+
+[31 <./plots/dharma_mSnow_imm.png>]
+<plots/dharma_mSnow_mat.png, id=429, 578.16pt x 433.62pt>
+File: plots/dharma_mSnow_mat.png Graphic file (type png)
+<use plots/dharma_mSnow_mat.png>
+Package pdftex.def Info: plots/dharma_mSnow_mat.png  used on input line 1243.
+(pdftex.def)             Requested size: 469.75502pt x 352.31538pt.
+
+
+[32 <./plots/dharma_mSnow_mat.png>]
+<plots/dharma_mTanner_imm.png, id=436, 578.16pt x 433.62pt>
+File: plots/dharma_mTanner_imm.png Graphic file (type png)
+<use plots/dharma_mTanner_imm.png>
+Package pdftex.def Info: plots/dharma_mTanner_imm.png  used on input line 1249.
+(pdftex.def)             Requested size: 469.75502pt x 352.31538pt.
+
+
+[33 <./plots/dharma_mTanner_imm.png>]
+<plots/dharma_mTanner_mat.png, id=443, 578.16pt x 433.62pt>
+File: plots/dharma_mTanner_mat.png Graphic file (type png)
+<use plots/dharma_mTanner_mat.png>
+Package pdftex.def Info: plots/dharma_mTanner_mat.png  used on input line 1255.
+(pdftex.def)             Requested size: 469.75502pt x 352.31538pt.
+
+
+[34 <./plots/dharma_mTanner_mat.png>]
+<plots/dharma_mBBRKC.png, id=450, 578.16pt x 433.62pt>
+File: plots/dharma_mBBRKC.png Graphic file (type png)
+<use plots/dharma_mBBRKC.png>
+Package pdftex.def Info: plots/dharma_mBBRKC.png  used on input line 1261.
+(pdftex.def)             Requested size: 469.75502pt x 352.31538pt.
+
+
+[35 <./plots/dharma_mBBRKC.png>]
+<plots/dharma_mSMBKC.png, id=457, 578.16pt x 433.62pt>
+File: plots/dharma_mSMBKC.png Graphic file (type png)
+<use plots/dharma_mSMBKC.png>
+Package pdftex.def Info: plots/dharma_mSMBKC.png  used on input line 1267.
+(pdftex.def)             Requested size: 469.75502pt x 352.31538pt.
+
+
+[36 <./plots/dharma_mSMBKC.png>]
+<plots/dharma_mPIBKC.png, id=464, 578.16pt x 433.62pt>
+File: plots/dharma_mPIBKC.png Graphic file (type png)
+<use plots/dharma_mPIBKC.png>
+Package pdftex.def Info: plots/dharma_mPIBKC.png  used on input line 1273.
+(pdftex.def)             Requested size: 469.75502pt x 352.31538pt.
+
+
+[37 <./plots/dharma_mPIBKC.png>]
+<plots/dharma_mPIRKC.png, id=472, 578.16pt x 433.62pt>
+File: plots/dharma_mPIRKC.png Graphic file (type png)
+<use plots/dharma_mPIRKC.png>
+Package pdftex.def Info: plots/dharma_mPIRKC.png  used on input line 1279.
+(pdftex.def)             Requested size: 469.75502pt x 352.31538pt.
+
+
+[38 <./plots/dharma_mPIRKC.png>]
+<plots/Snowind_fits.png, id=478, 578.16pt x 578.16pt>
+File: plots/Snowind_fits.png Graphic file (type png)
+<use plots/Snowind_fits.png>
+Package pdftex.def Info: plots/Snowind_fits.png  used on input line 1285.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[39 <./plots/Snowind_fits.png>]
+<plots/Snowcatch_fits.png, id=484, 578.16pt x 578.16pt>
+File: plots/Snowcatch_fits.png Graphic file (type png)
+<use plots/Snowcatch_fits.png>
+Package pdftex.def Info: plots/Snowcatch_fits.png  used on input line 1291.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[40 <./plots/Snowcatch_fits.png>]
+<plots/Snowimm_size_comp_all.png, id=490, 578.16pt x 578.16pt>
+File: plots/Snowimm_size_comp_all.png Graphic file (type png)
+<use plots/Snowimm_size_comp_all.png>
+Package pdftex.def Info: plots/Snowimm_size_comp_all.png  used on input line 1297.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[41 <./plots/Snowimm_size_comp_all.png>]
+<plots/Snowmat_size_comp_all.png, id=496, 578.16pt x 578.16pt>
+File: plots/Snowmat_size_comp_all.png Graphic file (type png)
+<use plots/Snowmat_size_comp_all.png>
+Package pdftex.def Info: plots/Snowmat_size_comp_all.png  used on input line 1303.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[42 <./plots/Snowmat_size_comp_all.png>]
+<plots/Snowret_size_all.png, id=503, 578.16pt x 578.16pt>
+File: plots/Snowret_size_all.png Graphic file (type png)
+<use plots/Snowret_size_all.png>
+Package pdftex.def Info: plots/Snowret_size_all.png  used on input line 1309.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[43 <./plots/Snowret_size_all.png>]
+<plots/Snowdisc_size_all.png, id=511, 578.16pt x 578.16pt>
+File: plots/Snowdisc_size_all.png Graphic file (type png)
+<use plots/Snowdisc_size_all.png>
+Package pdftex.def Info: plots/Snowdisc_size_all.png  used on input line 1315.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[44 <./plots/Snowdisc_size_all.png>]
+<plots/Snowmodel_growth.png, id=517, 578.16pt x 578.16pt>
+File: plots/Snowmodel_growth.png Graphic file (type png)
+<use plots/Snowmodel_growth.png>
+Package pdftex.def Info: plots/Snowmodel_growth.png  used on input line 1321.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[45 <./plots/Snowmodel_growth.png (PNG copy)>]
+<plots/Tannerind_fits.png, id=522, 578.16pt x 578.16pt>
+File: plots/Tannerind_fits.png Graphic file (type png)
+<use plots/Tannerind_fits.png>
+Package pdftex.def Info: plots/Tannerind_fits.png  used on input line 1327.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[46 <./plots/Tannerind_fits.png>]
+<plots/Tannercatch_fits.png, id=528, 578.16pt x 578.16pt>
+File: plots/Tannercatch_fits.png Graphic file (type png)
+<use plots/Tannercatch_fits.png>
+Package pdftex.def Info: plots/Tannercatch_fits.png  used on input line 1333.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[47 <./plots/Tannercatch_fits.png>]
+<plots/Tannerimm_size_comp_all.png, id=534, 578.16pt x 578.16pt>
+File: plots/Tannerimm_size_comp_all.png Graphic file (type png)
+<use plots/Tannerimm_size_comp_all.png>
+Package pdftex.def Info: plots/Tannerimm_size_comp_all.png  used on input line 1339.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[48 <./plots/Tannerimm_size_comp_all.png>]
+<plots/Tannermat_size_comp_all.png, id=540, 578.16pt x 578.16pt>
+File: plots/Tannermat_size_comp_all.png Graphic file (type png)
+<use plots/Tannermat_size_comp_all.png>
+Package pdftex.def Info: plots/Tannermat_size_comp_all.png  used on input line 1345.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[49 <./plots/Tannermat_size_comp_all.png>]
+<plots/Tannerret_size_all.png, id=547, 578.16pt x 578.16pt>
+File: plots/Tannerret_size_all.png Graphic file (type png)
+<use plots/Tannerret_size_all.png>
+Package pdftex.def Info: plots/Tannerret_size_all.png  used on input line 1351.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[50 <./plots/Tannerret_size_all.png>]
+<plots/Tannerdisc_size_all.png, id=553, 578.16pt x 578.16pt>
+File: plots/Tannerdisc_size_all.png Graphic file (type png)
+<use plots/Tannerdisc_size_all.png>
+Package pdftex.def Info: plots/Tannerdisc_size_all.png  used on input line 1357.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[51 <./plots/Tannerdisc_size_all.png>]
+<plots/Tannermodel_growth.png, id=559, 578.16pt x 578.16pt>
+File: plots/Tannermodel_growth.png Graphic file (type png)
+<use plots/Tannermodel_growth.png>
+Package pdftex.def Info: plots/Tannermodel_growth.png  used on input line 1363.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[52 <./plots/Tannermodel_growth.png (PNG copy)>]
+<plots/BBRKCind_fits.png, id=565, 361.35pt x 578.16pt>
+File: plots/BBRKCind_fits.png Graphic file (type png)
+<use plots/BBRKCind_fits.png>
+Package pdftex.def Info: plots/BBRKCind_fits.png  used on input line 1369.
+(pdftex.def)             Requested size: 469.75502pt x 751.61674pt.
+
+Overfull \vbox (125.13116pt too high) has occurred while \output is active []
+
+
+
+[53 <./plots/BBRKCind_fits.png>]
+<plots/BBRKCcatch_fits.png, id=571, 578.16pt x 578.16pt>
+File: plots/BBRKCcatch_fits.png Graphic file (type png)
+<use plots/BBRKCcatch_fits.png>
+Package pdftex.def Info: plots/BBRKCcatch_fits.png  used on input line 1375.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[54 <./plots/BBRKCcatch_fits.png>]
+<plots/BBRKCn_size_comp_all.png, id=577, 578.16pt x 578.16pt>
+File: plots/BBRKCn_size_comp_all.png Graphic file (type png)
+<use plots/BBRKCn_size_comp_all.png>
+Package pdftex.def Info: plots/BBRKCn_size_comp_all.png  used on input line 1381.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[55 <./plots/BBRKCn_size_comp_all.png>]
+<plots/BBRKCret_size_all.png, id=584, 578.16pt x 578.16pt>
+File: plots/BBRKCret_size_all.png Graphic file (type png)
+<use plots/BBRKCret_size_all.png>
+Package pdftex.def Info: plots/BBRKCret_size_all.png  used on input line 1387.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[56 <./plots/BBRKCret_size_all.png>]
+<plots/BBRKCtot_size_all.png, id=590, 578.16pt x 578.16pt>
+File: plots/BBRKCtot_size_all.png Graphic file (type png)
+<use plots/BBRKCtot_size_all.png>
+Package pdftex.def Info: plots/BBRKCtot_size_all.png  used on input line 1393.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[57 <./plots/BBRKCtot_size_all.png>]
+<plots/BBRKCmodel_growth.png, id=596, 578.16pt x 578.16pt>
+File: plots/BBRKCmodel_growth.png Graphic file (type png)
+<use plots/BBRKCmodel_growth.png>
+Package pdftex.def Info: plots/BBRKCmodel_growth.png  used on input line 1399.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[58 <./plots/BBRKCmodel_growth.png>]
+<plots/SMBKCind_fits.png, id=602, 361.35pt x 578.16pt>
+File: plots/SMBKCind_fits.png Graphic file (type png)
+<use plots/SMBKCind_fits.png>
+Package pdftex.def Info: plots/SMBKCind_fits.png  used on input line 1407.
+(pdftex.def)             Requested size: 469.75502pt x 751.61674pt.
+
+Overfull \vbox (135.18674pt too high) has occurred while \output is active []
+
+
+
+[59 <./plots/SMBKCind_fits.png>]
+<plots/SMBKCcatch_fits.png, id=608, 578.16pt x 578.16pt>
+File: plots/SMBKCcatch_fits.png Graphic file (type png)
+<use plots/SMBKCcatch_fits.png>
+Package pdftex.def Info: plots/SMBKCcatch_fits.png  used on input line 1413.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[60 <./plots/SMBKCcatch_fits.png>]
+<plots/SMBKCn_size_comp_all.png, id=614, 578.16pt x 578.16pt>
+File: plots/SMBKCn_size_comp_all.png Graphic file (type png)
+<use plots/SMBKCn_size_comp_all.png>
+Package pdftex.def Info: plots/SMBKCn_size_comp_all.png  used on input line 1419.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[61 <./plots/SMBKCn_size_comp_all.png>]
+<plots/SMBKCret_size_all.png, id=621, 578.16pt x 578.16pt>
+File: plots/SMBKCret_size_all.png Graphic file (type png)
+<use plots/SMBKCret_size_all.png>
+Package pdftex.def Info: plots/SMBKCret_size_all.png  used on input line 1425.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[62 <./plots/SMBKCret_size_all.png>]
+<plots/SMBKCtot_size_all.png, id=627, 578.16pt x 578.16pt>
+File: plots/SMBKCtot_size_all.png Graphic file (type png)
+<use plots/SMBKCtot_size_all.png>
+Package pdftex.def Info: plots/SMBKCtot_size_all.png  used on input line 1431.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[63 <./plots/SMBKCtot_size_all.png>]
+<plots/SMBKCmodel_growth.png, id=633, 578.16pt x 578.16pt>
+File: plots/SMBKCmodel_growth.png Graphic file (type png)
+<use plots/SMBKCmodel_growth.png>
+Package pdftex.def Info: plots/SMBKCmodel_growth.png  used on input line 1437.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[64 <./plots/SMBKCmodel_growth.png>]
+<plots/PIRKCind_fits.png, id=639, 361.35pt x 578.16pt>
+File: plots/PIRKCind_fits.png Graphic file (type png)
+<use plots/PIRKCind_fits.png>
+Package pdftex.def Info: plots/PIRKCind_fits.png  used on input line 1445.
+(pdftex.def)             Requested size: 469.75502pt x 751.61674pt.
+
+Overfull \vbox (135.18674pt too high) has occurred while \output is active []
+
+
+
+[65 <./plots/PIRKCind_fits.png>]
+<plots/PIRKCcatch_fits.png, id=645, 578.16pt x 578.16pt>
+File: plots/PIRKCcatch_fits.png Graphic file (type png)
+<use plots/PIRKCcatch_fits.png>
+Package pdftex.def Info: plots/PIRKCcatch_fits.png  used on input line 1451.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[66 <./plots/PIRKCcatch_fits.png>]
+<plots/PIRKCn_size_comp_all.png, id=651, 578.16pt x 578.16pt>
+File: plots/PIRKCn_size_comp_all.png Graphic file (type png)
+<use plots/PIRKCn_size_comp_all.png>
+Package pdftex.def Info: plots/PIRKCn_size_comp_all.png  used on input line 1457.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[67 <./plots/PIRKCn_size_comp_all.png>]
+<plots/PIRKCmodel_growth.png, id=658, 578.16pt x 578.16pt>
+File: plots/PIRKCmodel_growth.png Graphic file (type png)
+<use plots/PIRKCmodel_growth.png>
+Package pdftex.def Info: plots/PIRKCmodel_growth.png  used on input line 1463.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[68 <./plots/PIRKCmodel_growth.png>]
+<plots/PIBKCind_fits.png, id=664, 361.35pt x 578.16pt>
+File: plots/PIBKCind_fits.png Graphic file (type png)
+<use plots/PIBKCind_fits.png>
+Package pdftex.def Info: plots/PIBKCind_fits.png  used on input line 1471.
+(pdftex.def)             Requested size: 469.75502pt x 751.61674pt.
+
+Overfull \vbox (135.18674pt too high) has occurred while \output is active []
+
+
+
+[69 <./plots/PIBKCind_fits.png>]
+<plots/PIBKCcatch_fits.png, id=670, 578.16pt x 578.16pt>
+File: plots/PIBKCcatch_fits.png Graphic file (type png)
+<use plots/PIBKCcatch_fits.png>
+Package pdftex.def Info: plots/PIBKCcatch_fits.png  used on input line 1477.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[70 <./plots/PIBKCcatch_fits.png>]
+<plots/PIBKCn_size_comp_all.png, id=676, 578.16pt x 578.16pt>
+File: plots/PIBKCn_size_comp_all.png Graphic file (type png)
+<use plots/PIBKCn_size_comp_all.png>
+Package pdftex.def Info: plots/PIBKCn_size_comp_all.png  used on input line 1483.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[71 <./plots/PIBKCn_size_comp_all.png>]
+<plots/PIBKCmodel_growth.png, id=682, 578.16pt x 578.16pt>
+File: plots/PIBKCmodel_growth.png Graphic file (type png)
+<use plots/PIBKCmodel_growth.png>
+Package pdftex.def Info: plots/PIBKCmodel_growth.png  used on input line 1489.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+
+[72 <./plots/PIBKCmodel_growth.png>] (./full_manuscript.aux)
+ ***********
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-10-24>
+ ***********
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 12792 strings out of 469728
+ 205623 string characters out of 5475744
+ 621454 words of memory out of 5000000
+ 40793 multiletter control sequences out of 15000+600000
+ 691409 words of font info for 85 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 83i,6n,93p,721b,558s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri7.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss8.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy5.pfb><c:/Users/Cody/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
+Output written on full_manuscript.pdf (72 pages, 7690747 bytes).
+PDF statistics:
+ 942 PDF objects out of 1000 (max. 8388607)
+ 730 compressed objects within 8 object streams
+ 243 named destinations out of 1000 (max. 500000)
+ 578 words of extra memory for PDF output out of 10000 (max. 10000000)
+

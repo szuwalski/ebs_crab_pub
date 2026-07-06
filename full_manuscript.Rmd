@@ -1,0 +1,883 @@
+---
+author: ""
+date:
+output:
+  pdf_document:
+header-includes: 
+  - \usepackage[left]{lineno}
+  - \linenumbers
+  - \usepackage{float} \floatplacement{figure}{H} 
+
+
+#-  \pagenumbering{gobble}
+csl: fish-and-fisheries.csl
+toc: yes
+title: "Mortality events are important drivers of Bering Sea crab populations"
+authors: "Cody Szuwalski and others to come"
+---
+
+```{r, include=FALSE}
+
+knitr::opts_chunk$set(echo=FALSE,message=FALSE,warning=FALSE)
+
+library(plyr)
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(PBSmodelling)
+library(pander)
+#library(coda)
+#library(maps)
+library(lattice)
+#library(PBSmapping)
+#library(mapdata)    #some additional hires data
+#library(maptools)   #useful tools such as reading shapefiles
+#library(mapproj)
+library(plotrix)
+
+library(ggridges)
+library(reshape2)
+library(miceadds)
+
+
+```
+
+
+\newpage
+
+# Abstract
+Crab are some of the most abundant species in the eastern Bering Sea and support fisheries historically valued at over $300 million ex-vessel per year. Boom and bust dynamics are common and have led to fisheries closures for several stocks. We use population dynamics models that estimate time-varying recruitment, fishing mortality, and 'other' mortality to identify drivers of change for six crab populations in the eastern Bering Sea. Most population-wide declines appear unrelated to crab fisheries, but fisheries have large impacts on the small fraction of the population harvested. Recruitment variability and mortality events are key drivers of change with density-dependence, ice cover, body size, and temperature explaining a significant portion of the variability in mortality. Incorporating mortality events into management projections lowers expected yields and biomasses, and consequently the associated management targets. Using management targets that incorporate the possibility of mortality events would result in less conservative fishing practices than ignoring variability in mortality. Our results underscore the need to model historical and future mortality events in fisheries management and attempt to understand their drivers, in spite of the difficulties and potential complications to traditional management strategies it can present.
+
+\newpage
+
+# Introduction
+Crab are some of the most abundant species in the eastern Bering Sea ecosystem and historically have supported some of the most valuable Bering Sea fisheries, along with salmon and Walleye pollock. In particular, snow crab (*Chionoecetes opilio*) and Bristol Bay red king crab (*Paralithodes camtschaticus*) have supported important fisheries, but several other more lightly fished populations also exist in the eastern Bering Sea (\autoref{fig_1}). The trajectories for most of these populations are volatile; booms and busts are common. Recently, the snow crab population collapsed to unprecedented levels after a marine heatwave during 2018-2019 (1) and the fishery was closed for the first time ever. This coincided with a closure of the fishery for Bristol Bay red king crab, which put communities dependent upon crab fisheries under considerable financial strain and precipitated a ~$150 million US federal disaster relief effort (2). Large variability in crab abundance occurs in spite of focused management and some of the best data in the world (3). These data include population surveys for eastern Bering Sea crab since 1975 (4), catch data from the various fisheries that impact eastern Bering Sea crab stocks collected on the docks and at sea (5), and laboratory experiments conducted routinely to understand population processes such as growth and maturity (6,7). 
+
+Management for eastern Bering Sea crab is similar to most other closely managed fisheries with extensive data. Each year acceptable biological catches are set based on three outputs from a stock assessment: the current biomass, a target biomass, and a target fishing mortality. Colloquially, these pieces represent ‘where we are, where we want to be, and how we get there’ (respectively). Targets for biomass are based on equilibrium projections that assume stationarity in recruitment (i.e. young crab entering the population) and a time-invariant rate of natural mortality. However, periods of elevated natural mortality have been required to fit the survey data for crab in the assessments used in management, suggesting natural mortality is not constant. Furthermore, there is a possibility of unobserved mortality in groundfish fisheries of unknown magnitude as a result of trawl gear fatally impacting, but not capturing crab (8).
+
+Given the observed boom and bust dynamics and a potential violation of assumptions made in management, we ask the following questions: 1) how frequent are large declines in eastern Bering Sea crab populations, 2) what drives these declines and are there common linkages to demographic or environmental covariates, and 3) if population collapse is a common phenomenon, how can this information be used when providing management advice?
+
+To answer these questions, we fit population dynamics models to the available data for six crab populations in the eastern Bering Sea: snow crab, Bristol Bay red king crab (BBRKC), southern Tanner crab (*Chionoecetes bairdi*), Pribilof Islands red king crab (PIRKC), Pribilof Islands blue king crab (*Paralithodes platypus*; PIBKC), and Saint Matthews blue king crab (SMBKC). These models incorporate a key difference from the stock assessment models used in management: the estimation of an annually varying ‘other mortality’ that accounts for processes such as predation, unobserved mortality in non-directed fisheries, cannibalism, disease, and starvation. We then used generalized additive models (GAMs; 9) to explain variability in the estimates of other mortality using population abundance, ice cover, temperature occupied, and average size as covariates. We identified periods during which a population declined more than 40% (chosen because it is roughly double the assumed natural mortality across stocks). Finally, we explored the impacts of incorporating the expectation of mortality events into projections on which management advice is based. We end with suggestions for the management of eastern Bering Sea crab fisheries and the larger natural resource management community.
+
+# Methods
+## Assessment data 
+### NMFS Bottom trawl survey
+The eastern Bering Sea trawl survey has been conducted annually since the mid-1970s although no survey was conducted during 2020 due to the COVID-19 pandemic (Zacher et al. 2025). During the first decade of the survey there was a gradual expansion of the survey area leading to variability in both the number of stations sampled, and survey extent, primarily in the northwest of the survey grid. The survey extent was standardized in 1988, and 376 stations have been consistently sampled since. A 0.5-hr tow is made near the center of each 20 x 20 nmi (37 x 37 km) square on a sampling grid. Since 1982, the standardized sampling gear has been the 83-112 eastern otter trawl (Zacher et al. 2025). Prior to 2006 all carapace width and chela height measurements (used to assess male maturity) were measured to 1 mm. During the period 2006-2015 the majority were measured were measured to 1 mm, and a subsample specifically for chela height measurements were measured to 0.1 mm using Vernier calipers. Beginning in 2016 all crab have been measured to 0.1 mm using digital calipers. Individual crab are measured to the nearest 2 g using a digital scale. In cases where subsampling was required due to catch size, crab were divided into kept and discarded categories and weighed to the nearest 10 g. The ratio of kept/discarded was then used to calculate a sampling factor by which the sampled catch may later be expanded.
+
+Male crab maturity for Chionoecetes species was determined using the procedure outlined in Richar and Foy (2022). Briefly, paired, log-transformed, carapace width and chela height data are divided into a series of intervals along the log-carapace width (x) axis, within the log-carapace width range over which two overlapping data clouds occur. Data from each interval are used to calculate a distribution, and the minima of the region separating the 2 dominant peaks is obtained. The set of midpoints for each log-carapace width interval is then combined with the set of extracted minimas to create an (x,y) data set. A linear model is then run using these points as inputs, and the calculated regression line is the final maturity cutline.
+
+### Directed fisheries data
+
+Fisheries catches are reported by Alaska Department of Fish and Game (ADFG) statistical area in logbooks and were aggregated by year to be used as input in this analysis. Crab fisheries open starts at the end of October and close at the beginning of May, and species are harvested at different times within that window. BBRKC is generally harvested in the fall, and then snow crab and Tanner crab are harvested in the winter. Fisheries on each stock occur in a relatively concentrated time window. Catch of retained crab from the respective directed crab pot fisheries  were used in this analysis for years in which a given fishery was open and are based on dockside landings. Information on discarded crab are collected via on-board observers who measure, count, and weigh samples of crab brought aboard fishing vessels. More information on the fisheries data collection process can be seen in the individual stock assessments (Szuwalski, 2025; Palof et al., 2025; Sterns, et al., 2025; Stockhausen 2025).
+
+## Population dynamics models
+### Size-structured population
+The population dynamics models presented here incorporate the best available information on relevant population processes for each stock. The models tracks numbers of male crab at size (s) (and maturity state (m) for Chionoecetes spp) over time ($N_{t,s,m}$) with 5 mm size bins over different ranges of sizes for each population (\autoref{specs}). Other mortality (M) is estimated by year (y) (and maturity state (m) for Chionoecetes spp); fully-selected fishing mortality (F) is estimated by year (y). Other estimated parameters include the initial numbers at size by maturity state, an average recruitment, yearly recruitment deviations, a vector of scalars that determine the proportions of estimated recruitment split into the first three size bins, fishery selectivity, and survey selectivity (see \autoref{specs} for a list of what parameters are estimated for each stock). Parameters determining growth and maturity are estimated outside of the model based on available data from stock assessments. The timing of the fishery is different for each population and is denoted by the month in which it occurs (q below). Mortality is the only population process that occurs during the first several months of a given year (the crab year begins in July with the bottom trawl survey):
+
+ \begin{equation} N_{t=y+q/12,s,m} = N_{t=y,s,m}e^{-(\frac{q}{12})M_{t,s,m})}
+  \end{equation}
+  
+Fishing occurs as a pulse fishery in which the crab captured and brought on deck of fishing vessels ($C_{cap}$) are a function of capture selectivity ($S_{cap}$), the number of crab in the Bering Sea at the time of fishing, and the fishing mortality applied ($F_{t}$). A retention ogive ($S_{ret}$) is applied to the captured crab to determine what fraction of crab at a given size are retained for sale ($C_{ret}$) and what fraction are discarded back into the ocean ($C_{disc}$). A discard mortality ($d_{mort}$) of 25% is applied to the crab returned to the ocean. 
+
+ \begin{equation}  C_{cap,y} = n_{t=y+q/12,s,m}(1-e^{-F_{t}*S_{cap}})  \end{equation}
+ \begin{equation}  C_{ret,y} = C_{cap,y}*S_{ret} \end{equation}
+ \begin{equation}  n_{t=y+q/12,s,m} = n_{t=y+q/12,s,m}e^{-F_{t}*S_{cap}} + n_{t=y+q/12,s,m} + (1-d_{mort}) C_{cap,y} (1-S_{ret})   \end{equation}
+ 
+Capture selectivity and retention selectivity are logistic functions of size in which the slope and size at which 50% selectivity are estimated (two time-invariant parameters for each ogive). 
+  
+   \begin{equation}  S_{cap,s} = \frac{1}{1+exp(-S_{slope,cap}(size(s)-S_{50,cap}))}  \end{equation}
+   \begin{equation}  S_{ret,s} = \frac{1}{1+exp(-S_{slope,ret}(size(s)-S_{50,ret}))}  \end{equation}  
+   
+Growth occurs after fishing and is represented in the model by multiplying the vector of growing crab at size by a size-transition matrix $X_{s,s'}$ that defines the size to which crab grow given an initial size. For king crab species, there is an estimated probability of molting at size, $z_{s}$, that determines the proportion of crab at size that grow. For Chionoecetes spp, all immature crab are assumed to grow (i.e. $z_{s}$ = 1) . The growth process results in two temporary vectors of numbers at size for Chionoecetes species where immature crab are denoted by the subscript m=1 and mature by m=2. 
+
+ \begin{equation}  n_{t=y+q/12,s,m=immature} = z_{s}(1-\rho_{y,s}) X_{s,s'} n_{t=y+q/12,s,m=1}   \end{equation}
+ \begin{equation}  n_{t=y+q/12,s,m=mature} = z_{s}\rho_{y,s} X_{s,s'} n_{t=y+q/12,s,m=1} + (1-z_{s})n_{t=y+q/12,s,m=2}     \end{equation}
+ 
+A single equation can describe king crab species given the lack of a terminal molt: 
+
+\begin{equation}  n_{t=y+q/12,s} = (1-z_{s}) X_{s,s'} n_{t=y+q/12,s} + z_{s} X_{s,s'} n_{t=y+q/12,s}   \end{equation}
+
+The size transition matrices $X_{s,s'}$ used here were constructed using growth increment or tagging data collected over several years (see assessments for a summary) to estimate a linear relationship between pre- and post-molt carapace size, ($\hat{s}^{pre}_{s}$ and $\hat{s}^{post}_{s}$, respectively) and the variability around that relationship was characterized by a discretized and renormalized normal distribution, Y~*s,s'*~, where *s* and *s'* represent entries in the rows and columns of the matrix.
+
+ \begin{equation} X_{s,s'} = \frac{Y_{s,s'}}{ \sum_{s'} Y_{s,s'}}\end{equation}
+
+ \begin{equation} Y_{s,s'} = (\bar{s}_{s'} + 2.5 - S_{s})^{\frac {\hat{S_{s}}-(\bar{S}_{s}-2.5)}{ \beta}} \end{equation}
+
+ \begin{equation}
+  \hat{W}^{post}_{s} = \alpha_ + \beta_{1}\hat{S}^{pre}_{s}
+ \end{equation}
+
+Where $\alpha$, $\beta$, and $\beta_{1}$ are parameters estimated outside of the population dynamics model. 
+
+The probability of maturing ($\rho$) and molting probability (z) are handled differently for king crab vs. Chionoecetes species. Chionoecetes species have a terminal molt to maturity, after which they do not grow again (Tamone et al. 1995). The probability of maturing is based on the observed ogives of the proportion of mature new shell males by size calculated from chelae height measured in the NMFS survey data (Richar and Foy, 2022). These observed probabilities of having undergone terminal molt are input as data in the model. All immature individuals of Chionoecetes species are assumed to molt (i.e. z = 1). King crab do not have a molt to maturity, but the probability of molting varies with size. Here, a declining logistic function was estimated for each king crab species within the model:
+
+   \begin{equation}  z_{s} =1 - \frac{1}{1+exp(-m_{s}(size(s)-m_{50}))}  \end{equation}  
+
+Where the size at 50% molting probability is $m_{50}$ and the slope of the logistic function is $m_{s}$. Recruitment by year was estimated as a vector of deviations ($\tau_{y}$) around a mean ($\mu$) in log space and added to the first three size of classes of crab based on another vector that is determined by the estimated parameters $\delta_{s}$ with bounds 0-200 and determines the proportion allocated to each size bin $\psi_{s}$.
+
+ \begin{equation} tot_d = 20 + \delta_{1} + \delta_{2} \end{equation}
+ \begin{equation} \psi_{1} = \frac{20}{tot_d} \end{equation}
+ \begin{equation} \psi_{2,3} = \frac{\delta_{d}}{tot_d} \end{equation}
+ \begin{equation}  n_{(t=y+q/12,s=1-3,m=1)} = n_{(t=y+q/12,s=1-3,m=1)} + \psi_{s} e^{\mu+\tau_{y}}    \end{equation}
+
+Finally, the remaining other mortality is applied to the population after growth, molting, recruitment, and fishing occurs. For the Chionoecetes spp, an immature and a mature other mortality are estimated given the different stressors experience by immature and mature crab (e.g. molting vs. mating behavior). Note that this can allows Chionoecetes crab to experience two different mortalities within a given year as it undergoes terminal molt. 
+
+ \begin{equation} N_{t=y+1,s,m=1} = n_{t=y+q/12,s,m=1}e^{-\frac{12-q}{12}M_{t,s,m}}  \end{equation}
+ \begin{equation} N_{t=y+1,s,m=2} = n_{t=y+q/12,s,m=2}e^{-\frac{12-q}{12}M_{t,s,m}}  \end{equation}
+
+### Objective function
+The objective function for the population dynamics models consist of likelihood components (representing the fit of the model to the data) and penalty components (which incorporate constraints in the fitting based on auxiliary information) that are summed and minimized in log space to estimate parameters within the model. Several data sources were fit to using the following likelihoods. Observed size composition data crab caught in the survey and retained and discarded crab in the fishery (for stock for which these were available) were fit using multinomial likelihoods and were implemented in the form:
+
+\begin{equation} L_{x} = \sum_{y} N_{x,y} \sum_{l} p^{obs}_{x,y,l} ln( \hat {p}_{x,y,l}/p^{obs}_{x,y,l})
+\end{equation}
+
+Where *L~*x*~* was the likelihood associated with data component x, $N_{x,y}$ was the sample sizes for the likelihood, $p^{obs}_{x,y,l}$ was the observed proportion in size bin *l* during year *y* for data component *x*, and $\hat {p}_{x,y,l}$ was the predicted proportion in size bin *l* during year *y* for data component *x*. Sample sizes were input as 40 to balance the contributions of the size composition data and the indices.
+
+Observed indices of abundance in the survey and retained and discarded catches (in numbers) in the fishery were fit with log normal likelihoods implemented in the form:
+
+\begin{equation} L_{x} =  \sum_{y} \frac {(ln(\hat{I}_{x,y}) - ln(I_{x,y}))^2}{2 \sqrt{ln(1+CV_{x,y}^2)}}
+\end{equation}
+
+*$L_{x}$* was the contribution to the objective function of data component *x*, *$\hat{I}_{x,y}$* was the predicted value of quantity *I* from data component *x* during year *y*, I~*x,y*~ was the observed value of quantity *I* from data component *x* during year *y* and CV~*x,y*~ was the coefficient of variation for data component *x* during year *y*. See data files in the github repo for values of .  
+
+### Penalties and priors
+
+Smoothing penalties were placed on estimated vectors of deviations for other mortality using normal likelihoods on the second differences of the vectors. Normal priors were also placed on the mean value of other mortality (see \autoref{specs}) and the deviation of the estimated mortality from that mean. Prior values for the average other mortality are generally based on assumed maximum ages and Hamel's (2015) empirical analysis of life history correlates with mortality. The normal priors were of the form: 
+
+\begin{equation} P_{x} = \lambda_{x} \sum_{y} \frac {((\hat{I}_{x,y}) - (I_{x,y}))^2}{sqrt{2\sigma_{x,y}^2}}
+\end{equation}
+
+$P_{x}$ was the contribution to the objective function of the penalty associated with model estimate *x*, $\lambda_{x}$ was any additional weighting applied to the component, $\hat{I}_{x,y}$ was the predicted value of population process *I* relevant to penalty *x* during year *y*, I~*x,y*~ was the prior value of process *I* relevant to penalty *x* during year *y* and $\sigma_{x,y}$ was the input sigma for penalty *x* during year *y*. See data files in the github repo for values.  
+
+### Convergence, fits, and diagnostics
+These models were fit using AD Model Builder (ADMB; Fournier et al., 2012). Convergence was checked by ensuring gradients were small (e.g. <0.001) and a Hessian matrix was calculated and inverted. Variances associated with estimated time series of mortality were fixed at relatively large values to allow the model flexibility to capture changes in observed abundance (see SI for values by stock) and weights for smoothness penalties on mortality were chosen such that they were as small as possible, but still allowed the model to converge. Since a single model was fit for each stock, no model selection was performed, but concerning lacks of fit were evaluated in addition to the plausibility of estimated population processes when fitting models.
+
+## Generalized additive models
+### Structure
+Generalized additive models (GAMs) were used in the R programming language (package *mgcv*; Wood, 2011) to relate changes in the estimated probability of mortality $p(m_{m,y})$ (where *m* is maturity state, if available) to a vector including covariates and population density, $\phi_{y}$. We do not have an a priori expectation of the functional form of the relationship between mortality and covariates, so GAMs are useful because of their flexibility in fitting potential non-linear relationships. The estimated probability of mortality was calculated as: 
+
+\begin{equation} p(m_{m,y}) =  1 - exp(-m_{m,y}) \end{equation}
+
+and the structure of the GAMs were:
+
+\begin{equation} p(m_{m,y}) = s(\phi_{m,y}) + \epsilon_{i} \end{equation}
+
+where 's()' is a smoothing function based on thin-plate splines, $\phi$ is a matrix of demographic and environmental covariates (each of which have a separate smooth estimated), and $\epsilon$ is unexplained error. Tweedie distributions were used as link functions when fitting the GAMs. The number of knots allowed per smooth was constrained to 4 to minimize overfitting and facilitate biological interpretation. Each fitted GAM was weighted based on the inverse variance of the estimated other mortality deviation so that less certain estimates of mortality were weighted more lightly. Penalization of the smooths was implemented by choosing bs = 'tp' and setting 'select' to 'TRUE'. This allows for an individual smooth to be penalized to zero. All covariates were retained in models for each stock to allow for comparison of relationships across all stocks. 
+
+### Covariates
+
+Temperature occupied for each stock was calculated from the measured bottom temperature from each tow, weighted by the CPUE for a given species at that tow (\autoref{fig_4}). Average size was calculated as a weighted mean of the vector of size, with weights given as the abundance of crab in a given size bin estimated from the fitted population dynamics models (\autoref{fig_4}).
+
+Why ice and temperature?
+ice and temperature can be significantly concurve, but they still can represent different processes, so we left them in for all.
+
+### GAM model selection and diagnostics
+Full models (i.e. including all covariates) were compared via Akaike's Information Criterion (AIC; Akaike; 1974) to a 'base' model that included no covariates and deviance explained was reported.  Model diagnostics were performed by simulating residuals using the R package 'DHARMa' which is useful when using link functions other than Gaussian. Concurvity was also assessed with the function 'concurvity()' in the library 'mgcv'. Concurvity for GAMs is an similar measure to collinearity for linear models--it represents the extent to which one variable could be used to explain the deviance explained by another variable. Leave-one-out crossvalidation was also performed to evaluate the sensitivity of model fit to data availability.
+
+## Reference point calculation
+Maximum sustainable yield reference points were calculated for BBRKC in two ways to demonstrate the impacts of incorporating mortality events into management targets. In the first set of projections, other mortality was assumed to be constant at the median estimated value from the BBRKC model. In the second set, we sampled yearly other mortality from historical estimates and simulated 1000 populations to develop a distribution for the expected yield and biomass for a given fishing mortality under the possibility of episodic mortality events. Each simulated population was projected 200 years for a range of fishing mortalities (0-5) and yield in the final year was recorded to identify maximum sustainable yield and the associated biomass and fishing mortality. Recruitment was parameterized in terms of a Beverton Holt curve with steepness set at 0.5 to allow for a demonstration of the impact at lower stock sizes when fishing is an important driver of recruitment dynamics.
+
+# Results
+## Population dynamics models
+The models fit the available data well with acceptable diagnostics for all populations (\autoref{fig_2} & \autoref{fig_3}; see supplementary materials for further plots). Recruitment and other mortality were highly variable for all populations, and the among population variability in fishing mortality was often larger than within population Large correlations existed among estimated population processes by populations, which suggest shared drivers of dynamics.  For example, Tanner crab, immature snow crab, and PIRKC all had significantly correlated estimates of other mortality, as did the two populations around the Pribilof Islands (\autoref{}). Other mortality for mature snow crab and BBRKC, the two most valuable commercial populations, were also significantly positively correlated. Abundance trajectories were positively correlated for the blue king crab stocks and BBRKC, reflecting coincident large declines seen in these populations (\autoref{}).
+
+
+
+
+## Mortality events
+### GAM fits and diagnostics
+GAMs incorporating abundance, average size, ice cover, and temperature occupied explained the variability in estimates of other mortality significantly better than not including the variables for all population/maturity combinations (\autoref{fig_5} & \autoref{fig_6}; 19-82% deviance explained). Higher abundances were associated with higher mortality for red king crab and snow crab, but the opposite was true for Tanner crab and blue king crab (\autoref{fig_5}). Larger average size was associated with higher mortality for all populations except BBRKC and SMBKC, which had U-shaped relationships (\autoref{fig_5}). Ice extent was one of the most important variables for predicting variability, and higher mortality was associated with less ice for all stocks except the blue king crab stocks and BBRKC. Temperature effects were confounded with ice for some stocks, but higher temperatures were often associated with higher estimated mortality (see SI for discussion).
+
+The inclusion of density, temperature, and size resulted in better fitting models for all stock/maturity combinations on the basis of Akaike's Information Criterion (Akaike, 1970; \autoref{fig_6}). Immature snow crab had the largest improvement in AIC with the incorporation of all covariates. The deviance explained by the GAMs ranged from 32-73% for models in which AIC indicated an improvement in model fits. Ice and temperature showed a 'significant' (i.e. >0.6; REF) amount of concurvity for several stocks, primarily those that are within the cold pool consistently (\autoref{fig_6}). GAM fits to estimated mortality were largely consistent over leave-one-out crossvalidation (\autoref{fit_cval}). Immature snow crab mortality was the most notable departure when 2019 (the hottest year by far for immature snow crab) was left out. The same variables were generally 'significant' as seen through a p-value < 0.05 across cross-validation iterations (\autoref{pvals}). DHARMa residual were largely acceptable for all models, with slight issues for SMBKC, and snow crab (\autoref{snow_dharma} - \autoref{pirkc_dharma}). 
+
+### Frequency and correlations
+The combined contributions of changes in recruitment, fishing mortality, and other mortality produced volatile total abundance trajectories for eastern Bering Sea crab (\autoref{fig_2} & \autoref{fig_3}).  Abundance declines of 40% or greater happened 19 times across all populations during the past ~50 years, but only five of these were associated with estimated fishing mortalities higher than the median estimated rates. This, coupled with the relatively small fraction of the population vulnerable to fishing (\autoref{fig_7}), suggests directed crab fishing is rarely a large driver of population-wide decline other than for blue king crab, primarily because much of the population is protected from fishing by size-selective fishing. For example, the decline in snow crab abundance after the 2018-2019 heatwave was primarily driven by declines in the proportion of the population not vulnerable to the fishery; <1% of the population was large enough to be retained in the fishery (\autoref{fig_7}). So, although estimated fishing mortality was high, it was clearly not the driver of the population-wide collapse. Nonetheless, directed fishing can (and does) have large impacts on the small fraction of the population that is vulnerable to the fishery, which in turn can have large implications for the economic stability of the target fisheries, particularly if there are feedbacks within the population between growth, maturity, and density (as in snow crab, 10). Non-directed fisheries (e.g. groundfish trawling) may have more wide spread (but currently uncertain) effects—see SI for a discussion of the relationship between non-directed fisheries and the early decline of BBRKC. The remaining large drops in abundance for eastern Bering Sea crab were related to increased mortality, low recruitment, or a combination of the two. Clusters of population declines occurred during three periods: 1981-1984, 1996-1999, and 2015-2021. These all marked periods of ecosystem change and/or were relatively warm (11).
+
+## Management implications
+### Reference points decrease
+Expected yield and biomass were nearly halved when allowance was made for the possibility of mortality events and variability in yield and biomass was high (\autoref{fig_7}). Biomasses could range from 5-200% of the equilibrium value depending on the timing and magnitude of mortality events and their relationship to the timing of recruitment events. Even though there were large differences in expected yields and biomass, the fishing mortality that produced the maximum long-term yield did not change. The key change to the harvest strategy produced by incorporating expected mortality events would be lowering the target biomass. This would allow fishing to occur at much lower abundances than is currently allowed. Unintended consequences of incorporating environmentally driven variability into management targets (i.e. increasing the fishing pressure on populations undergoing ‘stress’) happens for other population processes as well. For example, incorporating climate change effects into recruitment for snow crab would result in lowering biomass targets as ice recedes, allowing higher exploitation rates as the population is undergoing climate stress (17).
+
+# Discussion
+## Ecological histories
+### Snow crab
+The output of our models allows us to begin to develop ecological histories for each population. For example, snow crab has gone through two periods of boom and bust. The largest population abundances occurred during 1990s, but the population declined sharply in 1999. Neither fishing mortality nor other mortality were above average during this period: the declines were driven by a sustained collapse in recruitment. The management response was strong--the population was declared ‘overfished’ (which, in spite of referencing ‘fishing’, is a term used to describe a stock that is at low relative abundance regardless of cause in U.S. fisheries; 12) and the stock slowly rebuilt. The largest recruitment event ever observed in the snow crab population occurred during the mid-2010s and the population was projected to increase to abundances not seen since the 1990s. However, the population collapsed before those projections could come to fruition and this collapse was the result of a mortality event, not a recruitment failure. 
+
+Szuwalski et al. (2023) developed a model similar to those used in this manuscript to try to understand what drove the mortality behind the snow crab collapse. Predation, cannibalism, temperature, disease, non-directed fishery bycatch, and density-dependent effects were considered as potential drivers. Ultimately, the model output suggested that the 2018-2019 marine heatwave increased the metabolic requirements for snow crab and that starvation likely contributed to the collapse (1). This modeling result was later corroborated by laboratory and field studies (13, 14) and the population has rebounded strongly since the collapse, with large numbers of smaller crab observed in the survey. It remains to be seen if this rebound will translate to large biomasses of crab captured in the fishery, but record ice cover in the Bering Sea in 2025 is encouraging.
+
+### Bristol Bay red king crab
+
+The other large commercial fishery, BBRKC, declined precipitously during the early 1980s as a result of a confluence of events: recruitment collapsed in 1979, fishing mortality spiked in 1980, and a period of elevated ‘other mortality’ occurred from 1980-1984. BBRKC experienced relatively high temperatures during this period of other mortality, but there have also been concerns about bycatch in non-crab fisheries during this period of time (12). The management response to the collapse was strong and fishing mortality was reduced in the crab fishery, which resulted in a slow rebuilding to another peak in abundance during the mid-2000s. Poor recruitment occurred throughout this time period, but ‘other mortality’ was also low, which facilitated rebuilding. Unfortunately, estimated other mortality increased again in the 2010s, which, coupled with poor recruitment and increasing fishing mortality lead to the lowest estimates of abundance on record in the 2020s. Links between recent declines in recruitment and ocean acidification have been noted recently (13), but more comprehensive consideration of hypotheses and processes that drive dynamics (e.g. ‘other mortality’ and drivers like predation, bycatch, disease, cannibalism, or starvation) could be useful in directing management effort for BBRKC and the other crab stocks in the Bering Sea. Developing appropriate indices to represent those drivers is time- and resource-intensive and will depend on continued funding for surveys and laboratory studies.
+
+### Pribilof Islands king crab
+One of the most dramatic shifts in species abundance in our study period occurred around the Pribilof Islands, where blue king crab all but disappeared and red king crab replaced them during the 1990s (\autoref{fig_2}). A number of hypotheses could explain this shift, including (but not limited to): increased competition between large crab and resulting increased mortality of PIBKC, increased competition between small crab (recruits) and decreases in recruitment of PIBKC, or THIS. PIBKC is also a more cold-adapted species, so warming could have influenced dynamics.
+
+We developed a suite of models to explore the potential of our models to evaluate competing hypotheses to explain the shift in species abundance around the Pribilof Islands. These models differ from the mortality drive models described for other species in that estimates of abundance for both species around the Pribilof Islands were incorporated in the models.
+
+Our models suggest that warming and PIRKC abundance likely did not result in increased mortality for PIBKC, but that increased PIRKC abundance was strongly negatively correlated with PIBKC recruitment (\autoref{}). This suggests a competitive link at early life stages is related to the decline of blue king crab, but is not conclusive evidence.  However, models like ours can direct researchers where to focus research efforts (e.g. focusing on interactions at early life histories) and what hypotheses might be de-prioritized for exploration (e.g. direct mortality at larger sizes). (Refs 14, 15)
+
+
+## Attribution in ecology 
+Ecological histories are only possible when using models that estimate a time-varying ‘other mortality’ (see SI for more stock-specific histories). Developing appropriate indices to evaluate drivers of population change as was done for snow crab is time- and resource-intensive and depends on continued funding for surveys and laboratory studies. We argue that this type of history-building will be increasingly important to management, so that population changes for which management has a ‘lever’ to enact change (e.g. directed fishing) can be distinguished from those management does not (e.g. climate change) or those only infrequently considered (e.g. predation or disease). Dangers also exist in building ‘just-so-stories’ around ecological models based on correlative analyses. Attributing causes using observational data can be difficult, particularly in complex systems with relatively short time series (15). More complex correlative analyses like structural equation models that impose causal relationships within a map of covariates   (). CITE COLE HERE. 
+
+Short time series
+Embedding
+Causal feels icky
+
+## Mortality events and management
+In spite of the difficulties in attribution, there are considerable risks in not attempting to understand population changes in a broader context than just fishery-driven dynamics. Assuming that population dynamics are driven by fishing when they are actually driven by climate or disease (for example) can result in misdirected (and ultimately wasted) management resources. Experiments, surveys, and analyses aimed at identifying drivers of population changes are likely the best hope for identifying effective management strategies as climate change reorganizes ecosystems. 
+
+Regardless of the true underlying drivers of population change, eastern Bering Sea crab fisheries are in crisis. The median estimate of commercial abundance during 2025 across all populations was ~7.5% of the maximum observed, with the two most economically important populations (BBRKC and snow crab) estimated at 16 and 8% of maximum, respectively (\autoref{fig_7}). Given the currently poor status of eastern Bering Sea crab populations, it is natural to ask if incorporating the expectation of episodic mortality events into biomass and fishing mortality targets could improve management outcomes. 
+
+The current management goals for eastern Bering Sea crab are to provide ‘optimal yield’ based on the equilibrium concepts of maximum sustainable yield (12). Clear negative population trends culminating in all-time lows of commercial biomass for many populations in the last decade suggest that management may not be achieving those goals, in spite of what appear to be relatively conservative harvests. Multiple violated assumptions of the underlying theory behind status quo management strategies suggest that working backwards from what has occurred rather than what ‘ought’ to have occurred based on theory might yield more positive results. In practice, this could mean taking a more experimental approach to exploitation rates and considering feedbacks in other processes than just recruitment to identify management actions that might improve stock trajectories (e.g. 18). Experimental management would likely need to be coupled with institutional change to provide fishers and communities dependent on crab fisheries more flexibility to support their livelihoods from the eastern Bering Sea ecosystem.
+
+Our observations and modeling for eastern Bering Sea crab may have important implications for other managed living resources. Mortality events occur for a range species for a range of reasons (19, 20) and the management response might change for each. Broadly, resource management operates at two levels: strategic (i.e. goal setting) and tactical (i.e. actions to accomplish goals). 
+
+From a strategic perspective, protecting populations from (and after) collapse and supporting resource-dependent communities are often central goals and should guide the type of management actions considered. Protecting populations from/after collapse can be challenging in the current equilibrium management paradigm if adverse drivers are built into the calculation of expectations of the population under no fishing (as discussed above). It is possible that alternate forms of harvest control rules could provide better management outcomes when populations are prone to mortality events. The shape and underlying dynamics of these rules would likely depend on the drivers of mortality events. Based on our analyses, consideration of population abundance, size composition, and environmental covariates may be useful. 
+
+The problem of boom-bust dynamics is not new; forage fish are the classic example in fisheries.  Anchovy (Engraulis mordax) and sardine (Sardinops sagax) off southern California have gone through boom-bust cycles over the last 500 years (during much of which fishing did not occur) based on analysis of scales collected in the sediment around the Channel Islands (21). Crustacean populations can also vary considerably and withstand high fishing mortalities. For example, Dungeness crab (Metacarcinus magister) populations in the Pacific Northwest have persisted in spite of very high exploitation rates (>90% in some areas) on the large males (22). These examples suggest that fishing is not a dominant driver of population change for some species and might suggest a higher tolerance for low abundances when specifying allowable harvests.
+
+However, a key difference between forage fish, Dungeness crab, and the crab in our study is life span and maturity schedule. Anchovies can live 7 years and mature at 1-2 years old (23), sardines can live 25 years, but mature at 1-3 years old (24), and Dungeness crab live ~10 years and mature at 2-3 years old (25). In contrast, snow crab live up to 20 years and mature at ~6-8 years old (26), red king crab live up to 30 years and mature at ~5-6 years old (27), and blue king crab live ~20-30 years and mature at ~5-6 years old (28). These differences in life history, particularly the longer times to maturity, are important for how responsive a population can be to favorable environmental conditions. These differences also might be related to why PIBKC has not recovered in spite of not being fished for a quarter of a century and why king crab populations in the Gulf of Alaska collapsed and have not returned (29). 
+
+From a tactical perspective, models with time-varying other mortality are not often used in fisheries science (with some exceptions; e.g. Shibata et al., 2018). The rationales behind a time-invariant mortality are reasonable if fishing is a primary driver of dynamics in a stationary system. First, changes in other processes can alias for change in mortality—a change in growth or catchability can produce similar changes in an index of abundance to a change in mortality (30, 31). Furthermore, the data to which population dynamics models are fit are also subject to observation error, so there is some risk that estimates of mortality are reflecting noise in the data rather than a signal from the population (32). In addition to difficulties reliably estimating variable mortality, small changes in the mortality rate used to calculate reference points can result in large changes to management advice (33). Because of these points, the prevailing advice for population dynamics models is to estimate a time-invariant natural mortality (34), often informed by a prior that considers the longevity of the modeled species (35). 
+# Conclusions
+## Variable mortality should be modeled
+Our modeling choices are a departure from current ‘best practices’ in stock assessment, but we argue that modeling ‘other mortality’ and attributing that mortality to some source(s) (or at least attempting to) will likely be an increasingly important issue as climate change progresses and when fishing may not be the primary driver of dynamics. The ability of a model to estimate mortality depends on how well other confounded population processes are known. For crab, simulations have shown that other mortality is estimable in circumstances of high data availability and population dynamics structure like that in the eastern Bering Sea (1, 36). Estimating other mortality may be more difficult for fish species than for crab given that variable catchability can be a larger problem for species than can swim over the top of survey trawls. With this in mind, we recommend that scientists and managers build models that have alternate assumptions about the drivers of dynamics (including time-varying mortality) and simulation test all population dynamics models, methods of attribution, and management strategies to understand their ability to estimate quantities need to make management decisions.  
+Collapses of harvested natural resources will continue to happen; predicting when and understanding why a population collapses is a hard, but important scientific problem. If causes of collapse can be identified, developing appropriate management strategies to avoid them may be relatively straightforward. For example, if predation is a key driver of a harvested population, incentivizing fishing for the predator in areas where there is the most overlap between predator and prey may reduce pressure on the prey population. If disease is a key driver of declines, effort spent identifying and minimizing vectors of transmission could help avoid collapses. Regardless of whether we understand the causes, management systems need the flexibility to promptly address sudden collapses, which may be more frequent as climate changes (37). These systems should be built on the principles that collapses should be met with decisive management action (e.g. closures and measures aimed at the underlying cause) and implementing social institutions that soften the economic blow to those dependent upon the resource (e.g. diverse fishing opportunities and incentivizing cooperative insurance). 
+
+# Acknowledgements 
+Github.com/szuwalski/ebs_crab
+
+# References 
+1.	Szuwalski et al. 2023. Collapse of snow crab. Science
+2.	Disaster relief
+3.	Hilborn et al. 2021. Effective fisheries management. PNAS
+4.	Zacher, L. 2025. Tech memo.
+5.	ADFG observer data reference
+6.	Richar, 
+7.	Long.
+8.	Rose unobserved mortality work
+9.	Wood. 2011. GAMS
+10.	Szuwalski et al., density dependence can modulate climate effects.
+11.	Hot Bering Sea during mortality events
+12.	Crab FMPB
+13.	Fedewa (body condition)
+14.	Copeman (starvation study)
+15.	Just so stories in ecology can blowup
+16.	Causality hard
+17.	Szuwalski, C .S. Unintended consequences.
+18.	Walters experimental management
+19.	Species collapse 1
+20.	Species collapse 2
+21.	Mclatchie 2017 sardine collapses
+22.	Richarson, 2017 Dungeness crab in PNW
+23.	Baxter, J.L., 1967. Summary of biological information on the northern anchovy Engraulis mordax Girard. CalCOFI Rep. 1:110-116.
+24.	sardine life history
+25.	Dungeness life history
+26.	Snow crab life history
+27.	Red king crab life history
+28.	Blue king crab life history
+29.	Gulf king crab collapse and no return
+30.	Taylor ‘hide or die’
+31.	Szuwalski, C.S. et al 2019 retrospective patterns
+32.	Noise vs. signal in estimating mortality variation
+33.	Thorson, JT et al. 2015. Mortality and reference points.
+34.	Johnson KJ 2014. Default for time-varying M
+35.	Hamel, O 2015. Priors for M
+36.	Cronin-Fine, L. 2021; Sims for variation in M
+37.	Litzow, MJ 2024. Borealization.
+38.	Dew. Shifty regime.
+39.	Litzow. Ocean acidification and BBRKC
+40.	Long PIRKC PIBKC
+41.	LONG PIRKC PIBKC
+42.	Shibata et al., 2018 japanese snow crab fisheries
+
+
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fig_1}Distributions of crab populations in the eastern Bering Sea (left) and the catch and ex-vessel value of that catch for crab populations (right). The upper blue king crab population distribution surrounds Saint Matthew’s Island; the bottom blue king crab population surrounds the Pribilof Islands." }
+
+include_graphics("plots/fig_1.png")
+
+```
+
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fig_4}Temperature occupied and average estimated size." }
+
+include_graphics("plots/fig_4.png")
+
+```
+
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fig_2}Fits to abundance data and estimates of recruitment, fishing mortality, and other mortality for king crab stocks." }
+
+include_graphics("plots/fig_2.png")
+
+```
+
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fig_3}Fits to abundance data (immature and mature) and estimates of recruitment, fishing mortality, and other mortality (immature and mature) for Chionoecetes stocks." }
+
+include_graphics("plots/fig_3.png")
+
+```
+
+
+\newpage
+
+
+
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fig_5}Estimated mortality from population dynamics models (left; grey dots with 95% CIs) with GAM estimates of those time series (colored lines with ribbons representing 95% CIs). Smooth relationships estimated within the GAMs for four covariates. Colors represent a population and are consistent among figures. " }
+
+include_graphics("plots_select/all_mort_all3.png")
+
+```
+
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fig_6}Pairwise concurvity by stock, change in AIC, and deviance explained. " }
+
+include_graphics("plots/fig_6.png")
+
+```
+
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fig_7}Estimated relative total abundance by crab population (A), with periods during which the abundance declined by at least 40% (vertical grey rectangles). Red rectangles correspond to periods of decline during which estimated fishing mortality was greater than the median; grey bars indicate periods when fishing mortality was below the median. Panel B collates the declines by year, magnitude, and stock." }
+
+include_graphics("plots/figure2alt.png")
+
+```
+
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fig_8} Proportion of each population vulnerable to fishing for rarely fished and regularly fished stocks (left column). Trajectories of the abundance of crab vulnerable to fishing (middle column) from rarely fished populations and regularly fished populations (bottom right). Equilibrium mature male biomass and fishery yields (right column) for BBRKC under a given fishing mortality when other mortality is constant (red line) and when mortality events are considered via stochastic simulations (box plots). " }
+
+include_graphics("plots/yield_curv6_stock.png")
+
+```
+
+\newpage
+
+
+
+# Supplementary materials
+## Population dynamics model fits and ecological histories
+### Snow crab
+#### Model fits
+Fits to the survey indices of abundance and size composition data were acceptable for snow crab (\autoref{surv_ind_o}). Fits to large observations of immature crab were underfit more often than lower values. The index of abundance for mature crab did not display this issue. Both the retained and discarded catch data and size composition data were well fit, which is not surprising given the small size of input coefficients of variance (\autoref{fish_ind_o}). Year by year fits to the size composition for both the survey and catch data did not reveal any concerning patterns (\autoref{fit_imm_surv_o}-\autoref{fit_disc_o}). Estimated population and fishery processes were reasonable given available data (\autoref{chio_over} & \autoref{snow_est}).
+#### Ecological history
+(see main text)
+
+### Tanner crab
+#### Model fits
+Fits to the survey indices of abundance and size composition data were largely acceptable for Tanner crab, save the early years of mature individuals (\autoref{surv_ind_t}). The early years of mature crab data were overestimated by the model. The median estimated size composition for mature males produced somewhat fewer large individuals than observed. Both the retained and discarded catch data and size composition data were well fit, which is not surprising given the small size of input coefficients of variance (\autoref{fish_ind_t}). Year by year fits to the size composition for the survey data show no concerning patterns for immature crab \autoref{fit_imm_surv_t} and slight underestimates of large mature crab (\autoref{fit_mat_surv_t}). Catch size composition data did not reveal any concerning patterns (\autoref{fit_ret_t} & \autoref{fit_disc_t}). Estimated population and fishery processes were reasonable given available data (\autoref{tan_est}).
+
+#### Ecological history
+
+Tanner crab explosion?
+ 
+ *	Only stock up recently
+ *	Different relationships with abundance and temperature
+ *	Even though stock is up, still fewer than there were in the 1970s
+
+### Bristol Bay red king crab
+#### Model fits
+
+Fits to the survey indices of abundance and size composition data were acceptable for Bristol Bay red king crab (\autoref{surv_ind_b}). Both the retained and discarded catch data and size composition data were well fit, which is not surprising given the small size of input coefficients of variance (\autoref{fish_ind_b}). Year by year fits to the size composition for the survey data were acceptable until the last four years, during which there were significant lacks of fit (\autoref{fit_surv_b}). Catch size composition data did not reveal any concerning patterns until the last four years for total size composition data (\autoref{fit_ret_b} & \autoref{fit_tot_b}). Estimated population and fishery processes were reasonable given available data and were similar to those estimated in the assessment used in management (\autoref{bbrkc_est}).
+
+#### Ecological history
+
+
+
+### Saint Matthews blue king crab
+#### Model fits
+
+Fits to the survey indices of abundance and size composition data were acceptable for Saint Matthew's blue king crab (\autoref{surv_ind_sm}). Both the retained and discarded catch data and size composition data were well fit, which is not surprising given the small size of input coefficients of variance (\autoref{fish_ind_sm}). Year by year fits to the size composition for the survey data were acceptable in spite of relatively noisy input data (\autoref{fit_surv_sm}). Catch size composition data were largely well fit, though some years medium sized crab were underestimated in the total size compositions (\autoref{fit_ret_sm} & \autoref{fit_tot_sm}). Estimated population and fishery processes were reasonable given available data  (\autoref{smbkc_est}).
+
+#### Ecological history
+
+Most driven by fishing? 
+
+Some drops in population coincided with fishing hard, but also appeared to be large other mortality operating.
+
+
+### Pribilof Islands red and blue king king crab
+#### Model fits
+The survey index of abundance for Pribilof Islands red king crab is noisy given small sample sizes, but the model was able to capture some of the overarching variability (\autoref{surv_ind_pir}). The model fit the limited retained catch data very effectively (\autoref{fish_ind_pir}). Only survey size composition data were available for PIRKC, which were fit well in years for which there were appreciable sample sizes (\autoref{fit_surv_pir}). Estimated population processes (survey selectivity, total fishery selectivity and molting probability) were reasonable given available information (\autoref{pirkc_est}).
+
+The survey index of abundance for Pribilof Islands blue king crab is also noisy given small sample sizes (particularly since 2000), but the model was able to capture some of the overarching variability (\autoref{surv_ind_pib}). The model fit the limited retained catch data less effectively than for PIRKC (\autoref{fish_ind_pib}). Only survey size composition data were available for PIBKC, which were fit reasonably in years for which there were appreciable sample sizes (\autoref{fit_surv_pib}). Estimated population processes (survey selectivity and molting probability) were reasonable given available information (\autoref{pibkc_est}).
+
+#### Ecological history
+
+
+
+
+
+
+
+
+\newpage
+
+```{r,echo=FALSE,warning=FALSE,message=F}
+
+stock<-c("Snow","Tanner","BBRKC","PIRKC","SMBKC","PIBKC")
+size_rng<-c("30-135","25-185","45-170","45-220","45-170","45-200")
+om_prior<-c(0.27,0.27,0.18,.21,.18,.18)
+maturity<-c("Chela-based","Chela-based",">120 mm",">120 mm",">105 mm",">120 mm")
+yr_rng<-c("1982-2025","1975-2025","1975-2025","1976-2025","1978-2025","1975-2025")
+fish_time<-c("Feb","Feb",rep("Sep",4))
+col_nm<-c("Population","Sizes","M prior","Maturity","Years","Fish time")
+
+
+plot_tab<-cbind(stock,size_rng,om_prior,maturity,yr_rng,fish_time)
+colnames(plot_tab)<-col_nm
+kable(plot_tab,justify=c("left",rep("center",5)),caption="\\label{specs}Specifications for models by population. ")
+
+```
+
+\newpage
+
+```{r,echo=FALSE,warning=FALSE,message=F}
+# in_dat<-as.data.frame(read.csv("data/keep_AIC.csv"))
+# plot_tab<-reshape2::acast(in_dat,covariate~process)
+# plot_tab[,1:4]<-round(as.numeric(plot_tab[,1:4]),2)
+# plot_tab[is.na(plot_tab)]<-""
+# kable(plot_tab,justify=c("left",rep("center",5)),caption="\\label{est_pars}Estimated processes by population. ")
+
+```
+
+\newpage
+
+```{r,echo=FALSE,warning=FALSE,message=F}
+# in_dat<-as.data.frame(read.csv("data/keep_AIC.csv"))
+# plot_tab<-reshape2::acast(in_dat,covariate~process)
+# plot_tab[,1:4]<-round(as.numeric(plot_tab[,1:4]),2)
+# plot_tab[is.na(plot_tab)]<-""
+# kable(plot_tab,justify=c("left",rep("center",5)),caption="\\label{AIC}AIC by model by process (columns) and covariates (rows). Each entry in the table represents a GAM used to explain variance in the process denoted by the column header that incorporates the row label as the covariate. ")
+
+```
+
+
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{rkc_cor}Correlations between estimated population processes for king crab species. The letter after a stock name (A,F,O,R,S) represent Total abundance, Fishing mortality, Other mortality, Recruitment, and Spawning abundance, respectively." }
+
+include_graphics("plots/rkc_cors.png")
+
+```
+
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{chio_cor}Correlations between estimated population processes for Chionoecetes crab species. "}
+
+include_graphics("plots/rkc_cors.png")
+
+```
+
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_cval}Changes in fits to data through leave-one-out crossvalidation. Each line represents the fit of the model to the data when one data point was dropped."}
+
+include_graphics("plots/model_crossval_pred.png")
+
+```
+
+\newpage
+
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{pvals}P-values by covariate from application of leave-one-out crossvalidation to each stock. ."}
+
+include_graphics("plots/model_crossval.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{snow_dharma}Diagnostics for GAMs fit to estimated mortality for immature snow crab. QQ plot for residuals simulated using DHARMa and quantiles of residuals vs. predicted."}
+
+include_graphics("plots/dharma_mSnow_imm.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{snow_dharma2}Diagnostics for GAMs fit to estimated mortality for mature snow crab. QQ plot for residuals simulated using DHARMa and quantiles of residuals vs. predicted."}
+
+include_graphics("plots/dharma_mSnow_mat.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{tan_dharma}Diagnostics for GAMs fit to estimated mortality for immature Tanner crab. QQ plot for residuals simulated using DHARMa and quantiles of residuals vs. predicted."}
+
+include_graphics("plots/dharma_mTanner_imm.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{tan_dharma2}Diagnostics for GAMs fit to estimated mortality for mature Tanner crab. QQ plot for residuals simulated using DHARMa and quantiles of residuals vs. predicted."}
+
+include_graphics("plots/dharma_mTanner_mat.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{bbrkc_dharma}Diagnostics for GAMs fit to estimated mortality for Bristol Bay red king crab. QQ plot for residuals simulated using DHARMa and quantiles of residuals vs. predicted."}
+
+include_graphics("plots/dharma_mBBRKC.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{smbkc_dharma}Diagnostics for GAMs fit to estimated mortality for St. Matthews blue king crab. QQ plot for residuals simulated using DHARMa and quantiles of residuals vs. predicted."}
+
+include_graphics("plots/dharma_mSMBKC.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{pibkc_dharma}Diagnostics for GAMs fit to estimated mortality for Pribilof Islands blue king crab. QQ plot for residuals simulated using DHARMa and quantiles of residuals vs. predicted."}
+
+include_graphics("plots/dharma_mPIBKC.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{pirkc_dharma}Diagnostics for GAMs fit to estimated mortality for Pribilof Islands red king crab. QQ plot for residuals simulated using DHARMa and quantiles of residuals vs. predicted."}
+
+include_graphics("plots/dharma_mPIRKC.png")
+
+```
+
+\newpage
+
+
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{surv_ind_o}Fits to the survey indices of abundance and size composition data for snow crab."}
+
+include_graphics("plots/Snowind_fits.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fish_ind_o}Fits to the retained and discarded abundances in the directed snow crab fishery."}
+
+include_graphics("plots/Snowcatch_fits.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_imm_surv_o}Model fits to individual years of size composition data for immature male snow crab captured in the survey."}
+
+include_graphics("plots/Snowimm_size_comp_all.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_mat_surv_o}Model fits to individual years of size composition data for mature male snow crab captured in the survey."}
+
+include_graphics("plots/Snowmat_size_comp_all.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_ret_o}Model fits to individual years of size composition data for retained snowcrab in the directed fishery."}
+
+include_graphics("plots/Snowret_size_all.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_disc_o}Model fits to individual years of size composition data for discarded snow crab in the directed fishery."}
+
+include_graphics("plots/Snowdisc_size_all.png")
+
+```
+
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{snow_est}Estimates of population processes for snow crab."}
+
+include_graphics("plots/Snowmodel_growth.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{surv_ind_t}Fits to the survey indices of abundance and size composition data for Tanner crab."}
+
+include_graphics("plots/Tannerind_fits.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fish_ind_t}Fits to the retained and discarded abundances in the directed Tanner crab fishery."}
+
+include_graphics("plots/Tannercatch_fits.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_imm_surv_t}Model fits to individual years of size composition data for immature male Tanner crab captured in the survey."}
+
+include_graphics("plots/Tannerimm_size_comp_all.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_mat_surv_t}Model fits to individual years of size composition data for mature male Tanner crab captured in the survey."}
+
+include_graphics("plots/Tannermat_size_comp_all.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_ret_t}Model fits to individual years of size composition data for retained Tanner crab in the directed fishery."}
+
+include_graphics("plots/Tannerret_size_all.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_disc_t}Model fits to individual years of size composition data for discarded Tanner crab in the directed fishery."}
+
+include_graphics("plots/Tannerdisc_size_all.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{tan_est}Estimates of population processes for Tanner crab."}
+
+include_graphics("plots/Tannermodel_growth.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{surv_ind_b}Fits to the survey indices of abundance and size composition data for Bristol Bay red king crab."}
+
+include_graphics("plots/BBRKCind_fits.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fish_ind_b}Fits to the retained and discarded abundances in the directed Bristol Bay red king crab fishery."}
+
+include_graphics("plots/BBRKCcatch_fits.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_surv_b}Model fits to individual years of size composition data for male Bristol Bay red king crab captured in the survey."}
+
+include_graphics("plots/BBRKCn_size_comp_all.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_ret_b}Model fits to individual years of size composition data for retained Bristol Bay red king crab in the directed fishery."}
+
+include_graphics("plots/BBRKCret_size_all.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_tot_b}Model fits to individual years of size composition data for total Bristol Bay red king crab in the directed fishery."}
+
+include_graphics("plots/BBRKCtot_size_all.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{bbrkc_est}Estimates of population processes for Bristol Bay red king crab."}
+
+include_graphics("plots/BBRKCmodel_growth.png")
+
+```
+
+\newpage
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{surv_ind_sm}Fits to the survey indices of abundance and size composition data for Saint Matthews blue king crab."}
+
+include_graphics("plots/SMBKCind_fits.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fish_ind_sm}Fits to the retained and discarded abundances in the directed Saint Matthews blue king crab fishery."}
+
+include_graphics("plots/SMBKCcatch_fits.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_surv_sm}Model fits to individual years of size composition data for male Saint Matthews blue king crab captured in the survey."}
+
+include_graphics("plots/SMBKCn_size_comp_all.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_ret_sm}Model fits to individual years of size composition data for retained Saint Matthews blue king crab in the directed fishery."}
+
+include_graphics("plots/SMBKCret_size_all.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_tot_sm}Model fits to individual years of size composition data for total Saint Matthews blue king crab in the directed fishery."}
+
+include_graphics("plots/SMBKCtot_size_all.png")
+
+```
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{smbkc_est}Estimates of population processes for Saint Matthews blue king crab."}
+
+include_graphics("plots/SMBKCmodel_growth.png")
+
+```
+
+\newpage
+
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{surv_ind_pir}Fits to the survey indices of abundance and size composition data for Pribilof Islands red king crab."}
+
+include_graphics("plots/PIRKCind_fits.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fish_ind_pir}Fits to the retained and discarded abundances in the directed Pribilof Islands red king crab fishery."}
+
+include_graphics("plots/PIRKCcatch_fits.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_surv_pir}Model fits to individual years of size composition data for male Pribilof Islands red king crab captured in the survey."}
+
+include_graphics("plots/PIRKCn_size_comp_all.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{pirkc_est}Estimates of population processes for Pribilof Islands red king crab."}
+
+include_graphics("plots/PIRKCmodel_growth.png")
+
+```
+
+\newpage
+
+\newpage
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{surv_ind_pib}Fits to the survey indices of abundance and size composition data for Pribilof Islands blue king crab."}
+
+include_graphics("plots/PIBKCind_fits.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fish_ind_pib}Fits to the retained and discarded abundances in the directed Pribilof Islands blue king crab fishery."}
+
+include_graphics("plots/PIBKCcatch_fits.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{fit_surv_pib}Model fits to individual years of size composition data for male Pribilof Islands blue king crab captured in the survey."}
+
+include_graphics("plots/PIBKCn_size_comp_all.png")
+
+```
+
+\newpage
+
+
+```{r, echo=FALSE,warning=FALSE,message=F,out.width="100%",fig.cap="\\label{pibkc_est}Estimates of population processes for Pribilof Islands blue king crab."}
+
+include_graphics("plots/PIBKCmodel_growth.png")
+
+```
+
+\newpage
+
+
+
+

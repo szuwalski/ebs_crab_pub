@@ -1,0 +1,10 @@
+model_dir: C:/Users/Cody/OneDrive/Documents/ebs_crab/models/snow
+output_dir: C:/Users/Cody/OneDrive/Documents/ebs_crab/models/snow/jitter_runs
+n: 100
+cores: 8
+jitter_sd: 0.1
+seed: 123
+gradient_cutoff: 0.001
+require_hessian: TRUE
+include_failed_in_plots: FALSE
+active_parameters: log_n_imm, log_n_mat, nat_m_dev, nat_m_mat_dev, nat_m_lg_dev, log_avg_rec, rec_devs, log_m_mu, prop_rec, log_f, f_dev, fish_ret_sel_50, fish_ret_sel_50_post, fish_ret_sel_slope, fish_ret_sel_slope_post, fish_tot_sel_offset, fish_tot_sel_offset_dev, fish_tot_sel_slope, surv_omega, surv_alpha1, surv_beta1, surv_alpha2, surv_beta2

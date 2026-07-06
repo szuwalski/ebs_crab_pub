@@ -1,0 +1,168 @@
+#if !defined(_BKC_)
+#  define _BKC_
+
+class model_data : public ad_comm{
+  data_int styr;
+  data_int endyr;
+  data_int dat_yr;
+  data_ivector years;
+  data_int size_n;
+  data_vector sizes;
+  data_vector n_obs;
+  data_matrix n_size_obs;
+  data_vector prob_molt;
+  data_matrix size_trans;
+  data_vector sigma_numbers;
+  data_number sc_eff_samp;
+  data_number log_mu_m_prior;
+  data_number est_m_devs;
+  data_number est_q_devs;
+  data_number est_sigma_m;
+  data_number sigma_m_mu;
+  data_number smooth_q_weight;
+  data_number smooth_m_weight;
+  data_number est_log_m_mu;
+  data_number est_sigma_q;
+  data_number smooth_f_weight;
+  data_number surv_sel_cv;
+  data_number smooth_surv_weight;
+  data_number est_molt;
+  data_int ret_cat_yr_n;
+  data_vector ret_cat_yrs;
+  data_vector ret_cat_numbers;
+  data_int ret_sc_yr_n;
+  data_vector ret_sc_yrs;
+  data_matrix ret_cat_size;
+  data_int tot_cat_yr_n;
+  data_vector tot_cat_yrs;
+  data_vector tot_cat_numbers;
+  data_int tot_sc_yr_n;
+  data_vector tot_sc_yrs;
+  data_matrix tot_cat_size;
+  data_number sigma_numbers_ret;
+  data_number sigma_numbers_tot;
+  data_number discard_survival;
+  data_number ret_eff_samp;
+  data_number tot_eff_samp;
+  ~model_data();
+  model_data(int argc,char * argv[]);
+  friend class model_parameters;
+};
+
+class model_parameters : public model_data ,
+  public function_minimizer
+{
+public:
+  ~model_parameters();
+  void preliminary_calculations(void);
+  void set_runtime(void);
+  static int mc_phase(void)
+  {
+    return initial_params::mc_phase;
+  }
+  static int mceval_phase(void)
+  {
+    return initial_params::mceval_phase;
+  }
+  static int hessian_phase(void)
+  {
+    return initial_params::in_hessian_phase;
+  }
+  static int sd_phase(void)
+  {
+    return initial_params::sd_phase;
+  }
+  static int current_phase(void)
+  {
+    return initial_params::current_phase;
+  }
+  static int last_phase(void)
+  {
+    return (initial_params::current_phase
+      >=initial_params::max_number_phases);
+  }
+  static prevariable current_feval(void)
+  {
+    return *objective_function_value::pobjfun;
+  }
+private:
+  dvariable adromb(dvariable(model_parameters::*f)(const dvariable&), double a, double b, int ns)
+  {
+    using namespace std::placeholders;
+    _func func = std::bind(f, this, _1);
+    return function_minimizer::adromb(func, a, b, ns);
+  }
+  ivector integer_control_flags;
+  dvector double_control_flags;
+  param_init_bounded_vector log_n_init;
+  param_init_bounded_dev_vector nat_m_dev;
+  param_init_bounded_vector q_dev;
+  param_init_bounded_number log_avg_rec;
+  param_init_bounded_dev_vector rec_devs;
+  param_init_bounded_number sigma_m;
+  param_init_bounded_number log_m_mu;
+  param_init_bounded_vector prop_rec;
+  param_init_bounded_vector sigma_q;
+  param_init_bounded_number log_f;
+  param_init_bounded_dev_vector f_dev;
+  param_init_bounded_number fish_ret_sel_50;
+  param_init_bounded_number fish_ret_sel_slope;
+  param_init_bounded_number fish_tot_sel_50;
+  param_init_bounded_number fish_tot_sel_slope;
+  param_init_bounded_number surv_sel_50;
+  param_init_bounded_number surv_sel_slope;
+  param_init_bounded_number molt_sel_50;
+  param_init_bounded_number molt_sel_slope;
+  param_matrix n_size_pred;
+  param_matrix nat_m;
+  param_matrix selectivity;
+  param_vector total_fish_sel;
+  param_vector retain_fish_sel;
+  param_vector surv_sel;
+  param_vector pred_retained_n;
+  param_stddev_vector pred_tot_n;
+  param_matrix pred_retained_size_comp;
+  param_matrix pred_tot_size_comp;
+  param_vector f_mort;
+  param_vector in_molt_prob;
+  param_vector est_molt_prob;
+  param_vector temp_n;
+  param_vector trans_n;
+  param_vector temp_catch_n;
+  param_vector sum_numbers_obs;
+  param_stddev_vector numbers_pred;
+  param_vector sum_ret_numbers_obs;
+  param_vector sum_tot_numbers_obs;
+  param_number num_like;
+  param_number ret_cat_like;
+  param_number tot_cat_like;
+  param_number surv_sc_like;
+  param_number ret_comp_like;
+  param_number tot_comp_like;
+  param_number nat_m_like;
+  param_number nat_m_mu_like;
+  param_number smooth_q_like;
+  param_number smooth_m_like;
+  param_number q_like;
+  param_number q_mat_like;
+  param_number smooth_f_like;
+  param_number surv_sel_prior;
+  param_number smooth_surv_like;
+  param_number f_prior;
+  param_stddev_vector total_population_n;
+  param_stddev_vector fished_population_n;
+  param_vector temp_prop_rec;
+  param_number tot_prop_rec;
+  param_number prior_function_value;
+  param_number likelihood_function_value;
+  objective_function_value f;
+public:
+  virtual void userfunction(void);
+  virtual void report(const dvector& gradients);
+  virtual void final_calcs(void);
+  model_parameters(int sz,int argc, char * argv[]);
+  virtual void initializationfunction(void){}
+  void evaluate_the_objective_function(void);
+
+};
+#endif

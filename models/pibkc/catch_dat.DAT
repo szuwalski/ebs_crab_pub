@@ -1,0 +1,30 @@
+# number of years of retained fishery data																																							
+17	
+# which years of retained fishery data																																							
+1975	1976	1977	1978	1979	1980	1981	1982	1983	1984	1985	1986	1987	1995	1996	1997	1998
+# retained catch biomass in numbers
+314931	855505	807092	797364	815557	1497101	1202499	587908	276364	40428	76945	36988	95130	190951	127712	68603	68419
+# number of years of retained fishery size comp data																																							
+0	
+# which years of retained fishery size comp data																																							
+# retained catch numbers at size																																							
+# number of years of discard/total data
+0
+# total catch years
+# total catch																																							
+# number of years of discard/total data
+0
+# total catch years
+# total numbers at size																																							
+# sigma_numbers_ret
+0.05
+# sigma_number_tot
+0.05
+# discard survival
+0.8	
+# eff_ret_samp
+100
+# eff_tot_samp
+100
+# weight at size to convert from numbers
+0.07175613	0.098448839	0.131237392	0.170800075	0.2178247	0.273007956	0.337054851	0.410678228	0.494598334	0.589542444	0.696244516	0.815444892	0.947890016	1.094332186	1.255529324	1.432244761	1.625247048	1.835309773	2.063211397	2.309735095	2.575668615	2.861804142	3.16893817	3.497871382	3.849408543	4.224358389	4.623533528	5.047750347	5.497828922	5.974592933	6.478869582	7.011489516	7.573286754	8.165098619	8.787765667
