@@ -343,29 +343,7 @@ king_srr<-ggplot()+
   ylab("Recruits")+xlab("Relative spawner abundance")+
   expand_limits(x=0)
 
-
-#============================================
-# need to pull spawning biomass in there too
-#============================================
-# all_dat<-NULL
-# for(x in 1:length(outs_in))
-# {
-#   
-#   years<-seq(outs_in[[x]]$styr,outs_in[[x]]$endyr)
-#   plot_dat<-data.frame(values=c(outs_in[[x]]$recruits/max(outs_in[[x]]$recruits),
-#                                 outs_in[[x]]$`natural mortality`[,1],
-#                                 outs_in[[x]]$est_fishing_mort,
-#                                 pred=outs_in[[x]]$numbers_pred/div_n[x]),
-#                        Year=c(years-5,rep(years,3)),
-#                        process=c(rep("Recruitment",length(years)),
-#                                  rep("Other mortality",length(years)),
-#                                  rep("Fishing mortality",length(years)),
-#                                  rep("Abundance",length(years))))
-#   plot_dat$species<-species[x]
-#   all_dat<-rbind(all_dat,plot_dat)                
-# }
-
-#library(GGally)
+library(GGally)
 all_dat$species_process<-paste(all_dat$species,"_",substring(all_dat$process,1,1),sep="")
 casted<-dcast(all_dat,Year~species_process,value.var="values")[,-1]
 my_fn <- function(data, mapping, ...){
@@ -376,34 +354,32 @@ my_fn <- function(data, mapping, ...){
   p+theme_bw()
 }
 
-#p1 = ggpairs(casted, lower = list(continuous = my_fn))
+p1 = ggpairs(casted, lower = list(continuous = my_fn))
 
 
 # Correlation matrix plot
-# p2 <- ggcorr(casted, label = TRUE, label_round = 2)
-# g2 <- ggplotGrob(p2)
-# colors <- g2$grobs[[6]]$children[[3]]$gp$fill
+ p2 <- ggcorr(casted, label = TRUE, label_round = 2)
+ g2 <- ggplotGrob(p2)
+ colors <- g2$grobs[[6]]$children[[3]]$gp$fill
 # 
 # # Change background color to tiles in the upper triangular matrix of plots 
-# idx <- 1
-# p<-ncol(casted)
-# for (k1 in 1:(p-1)) {
-#   for (k2 in (k1+1):p) {
-#     plt <- getPlot(p1,k1,k2) +
-#       theme(panel.background = element_rect(fill = colors[idx], color="white"),
-#             panel.grid.major = element_line(color=colors[idx]))
-#     p1 <- putPlot(p1,plt,k1,k2)
-#     idx <- idx+1
-#   }
-# }
+ idx <- 1
+ p<-ncol(casted)
+ for (k1 in 1:(p-1)) {
+   for (k2 in (k1+1):p) {
+     plt <- getPlot(p1,k1,k2) +
+       theme(panel.background = element_rect(fill = colors[idx], color="white"),
+             panel.grid.major = element_line(color=colors[idx]))
+     p1 <- putPlot(p1,plt,k1,k2)
+     idx <- idx+1
+   }
+ }
 # 
-# png("plots/rkc_cors.png",height=13,width=13,res=400,units='in')
-# print(p1)
-# dev.off()
+ png("plots/rkc_cors.png",height=13,width=13,res=400,units='in')
+ print(p1)
+ dev.off()
 
 all_dat_kc<-all_dat
-
-filter(all_dat_kc,species=="PIBKC",process=="Abundance")
 
 casted<-dcast(filter(all_dat,process%in%c("Abundance","Recruitment")),Year~species_process,value.var="values")
 #p1<-ggpairs(casted[,-1])+ theme_grey(base_size = 8)

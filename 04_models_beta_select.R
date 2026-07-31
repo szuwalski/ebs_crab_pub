@@ -554,7 +554,7 @@ idx <- 1
 p<-ncol(casted)
 for (k1 in 1:(p-1)) {
   for (k2 in (k1+1):p) {
-    plt <- getPlot(p1,k1,k2) +
+    plt <- getPlot(p2,k1,k2) +
       theme(panel.background = element_rect(fill = colors[idx], color="white"),
             panel.grid.major = element_line(color=colors[idx]))
     p1 <- putPlot(p1,plt,k1,k2)

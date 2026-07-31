@@ -67,8 +67,8 @@ fit_uncertainty_ts<-function(fit_dat, stock, years, pred, cor_file, var_name)
 cor_files<-c("/models/snow/test/snow_down.cor",
              "/models/tanner/test/tanner.cor")
 keep_uncertainty_m_ch<-NULL
-keep_uncertainty_totn<-NULL
-keep_uncertainty_fishn<-NULL
+keep_uncertainty_totn_ch<-NULL
+keep_uncertainty_fishn_ch<-NULL
 keep_uncertainty_rec_ch<-NULL
 keep_uncertainty_imm_numbers_pred<-NULL
 keep_uncertainty_mat_numbers_pred<-NULL
@@ -100,7 +100,7 @@ for(x in 1:length(cor_files))
   }
   
   yrs<-seq(outs_in[[x]]$styr,outs_in[[x]]$endyr)
-  keep_uncertainty_totn<-rbind(keep_uncertainty_totn,
+  keep_uncertainty_totn_ch<-rbind(keep_uncertainty_totn_ch,
                                parse_cor_rows(ttt,'total_population_n',species[x],yrs))
   
   take_em<-grep('fished_population_n',ttt)
@@ -114,7 +114,7 @@ for(x in 1:length(cor_files))
                     dn_m=as.numeric(zzz[nzchar(zzz)][3])-as.numeric(zzz[nzchar(zzz)][4])*1.96,
                     sd=as.numeric(zzz[nzchar(zzz)][4]),
                     Year=yrs[y])
-    keep_uncertainty_fishn<-rbind(keep_uncertainty_fishn,tmp)
+    keep_uncertainty_fishn_ch<-rbind(keep_uncertainty_fishn_ch,tmp)
   }
   
   yrs<-seq(outs_in[[x]]$styr,outs_in[[x]]$endyr)
@@ -298,11 +298,6 @@ chion_proc_agg<-ggplot()+
         panel.border = element_blank(),
         panel.background = element_blank())
 
-# png("plots/fig_agg_chion.png",height=8,width=5,res=400,units='in')
-# print(chion_proc_agg)
-# dev.off()
-
-
 #==need to put the CVs in the .REP files and pull here
 #==immature indices
 div_n<-c(max(outs_in[[1]]$imm_n_obs),max(outs_in[[2]]$imm_n_obs))
@@ -326,7 +321,7 @@ for(x in 1:length(outs_in))
   ind_dat_imm<-rbind(ind_dat_imm,df_1)
 }
 
-
+ind_dat_imm$obs[ind_dat_imm$obs==0]<-NA
 imm_abnd<-ggplot(data=ind_dat_imm)+
   geom_ribbon(aes(x=year,ymin=pred_ci_dn,ymax=pred_ci_up,fill=species),alpha=.18,colour=NA)+
   geom_segment(aes(x=year,xend=year,y=ci_dn,yend=ci_up))+
@@ -365,7 +360,9 @@ for(x in 1:length(outs_in))
   df_1$color<-in_col[x]
   ind_dat_mat<-rbind(ind_dat_mat,df_1)
 }
-
+#==make an upper limit for plotting
+ind_dat_mat$pred_ci_up[ind_dat_mat$pred_ci_up>1.339]<-1.339
+ind_dat_mat$obs[ind_dat_mat$obs==0]<-NA
 mat_abnd<-ggplot(data=ind_dat_mat)+
   geom_ribbon(aes(x=year,ymin=pred_ci_dn,ymax=pred_ci_up,fill=species),alpha=.18,colour=NA)+
   geom_segment(aes(x=year,xend=year,y=ci_dn,yend=ci_up))+
@@ -403,7 +400,7 @@ for(x in 1:length(outs_in))
 {
   years<-seq(outs_in[[x]]$styr,outs_in[[x]]$endyr)
   rec_ts<-filter(keep_uncertainty_rec_ch,stock==species[x])
-  totn_ts<-filter(keep_uncertainty_totn,stock==species[x])
+  totn_ts<-filter(keep_uncertainty_totn_ch,stock==species[x])
   if(nrow(rec_ts)==0)
   {
     warning(paste("No recruits rows found in",cor_files[x],"- plotting",species[x],"recruitment without .cor uncertainty."))
@@ -433,26 +430,28 @@ for(x in 1:length(outs_in))
   all_dat<-rbind(all_dat,plot_dat)                
 }
 
-# library(GGally)
-# casted<-dcast(all_dat,Year~species+process,value.var="values")[,-1]
-# my_fn <- function(data, mapping, ...){
-#   p <- ggplot(data = data, mapping = mapping) + 
-#     geom_point() + 
-#     geom_smooth(method=loess, fill="red", color="red", ...) +
-#     geom_smooth(method=lm, fill="blue", color="blue", ...)
-#   p+theme_bw()
-# }
-# 
-# p1 = ggpairs(casted, lower = list(continuous = my_fn))
+ library(GGally)
+ casted<-dcast(all_dat,Year~species+process,value.var="values")[,-1]
+ my_fn <- function(data, mapping, ...){
+   p <- ggplot(data = data, mapping = mapping) + 
+     geom_point() + 
+     geom_smooth(method=loess, fill="red", color="red", ...) +
+     geom_smooth(method=lm, fill="blue", color="blue", ...)
+   p+theme_bw()
+ }
+ 
+ p1 = ggpairs(casted, lower = list(continuous = my_fn))
 
 
 #============================================
 # SR relationsihp
 #============================================
-
+unique(all_dat$process)
 chion_srr_dat<-dcast(filter(all_dat,process%in%c("Recruitment","Spawner abundance")),species+Year~process,value.var="values")
+chion_srr_dat$spbio<-as.numeric(chion_srr_dat$`Spawner abundance`)
+
 chion_srr<-ggplot()+
-  geom_point(data=chion_srr_dat,aes(x="Spawner abundance",y=Recruitment,col=species),size=2)+
+  geom_point(data=chion_srr_dat,aes(x=spbio,y=Recruitment,col=species),size=2)+
   facet_wrap(~species)+
   theme_bw()+ylab("")+
   scale_color_manual(values=in_col)+
@@ -469,26 +468,27 @@ chion_srr<-ggplot()+
 
 
 # # Correlation matrix plot
-# p2 <- ggcorr(casted, label = TRUE, label_round = 2)
-# g2 <- ggplotGrob(p2)
-# colors <- g2$grobs[[6]]$children[[3]]$gp$fill
+ p2 <- ggcorr(casted, label = TRUE, label_round = 2)
+ g2 <- ggplotGrob(p2)
+ colors <- g2$grobs[[6]]$children[[3]]$gp$fill
 # 
+ ##THESE COLORS NEED TO BE FIXED
 # # Change background color to tiles in the upper triangular matrix of plots 
-# idx <- 1
-# p<-ncol(casted)
-# for (k1 in 1:(p-1)) {
-#   for (k2 in (k1+1):p) {
-#     plt <- getPlot(p1,k1,k2) +
-#       theme(panel.background = element_rect(fill = colors[idx], color="white"),
-#             panel.grid.major = element_line(color=colors[idx]))
-#     p1 <- putPlot(p1,plt,k1,k2)
-#     idx <- idx+1
-#   }
-# }
+ idx <- 1
+ p<-ncol(casted)
+ for (k1 in 1:(p-1)) {
+   for (k2 in (k1+1):p) {
+     plt <- getPlot(p1,k1,k2) +
+       theme(panel.background = element_rect(fill = colors[idx], color="white"),
+             panel.grid.major = element_line(color=colors[idx]))
+     p1 <- putPlot(p1,plt,k1,k2)
+     idx <- idx+1
+   }
+ }
 # 
-# png("plots/chion_cors.png",height=13,width=13,res=400,units='in')
-# print(p1)
-# dev.off()
+ png("plots/chion_cors.png",height=13,width=13,res=400,units='in')
+ print(p1)
+ dev.off()
 
 all_dat$species_process<-paste(all_dat$species,"_",substring(all_dat$process,1,1),sep="")
 out_dat<-rbind(all_dat_kc,all_dat)

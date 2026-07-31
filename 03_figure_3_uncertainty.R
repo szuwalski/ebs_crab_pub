@@ -64,8 +64,8 @@ fit_uncertainty_ts<-function(fit_dat, stock, years, pred, cor_file, var_name)
 cor_files<-c("/models/snow/test/snow_down.cor",
              "/models/tanner/test/tanner.cor")
 keep_uncertainty_m_ch<-NULL
-keep_uncertainty_totn<-NULL
-keep_uncertainty_fishn<-NULL
+keep_uncertainty_totn_ch<-NULL
+keep_uncertainty_fishn_ch<-NULL
 keep_uncertainty_rec_ch<-NULL
 keep_uncertainty_imm_numbers_pred<-NULL
 keep_uncertainty_mat_numbers_pred<-NULL
@@ -97,7 +97,7 @@ for(x in 1:length(cor_files))
   }
   
   yrs<-seq(outs_in[[x]]$styr,outs_in[[x]]$endyr)
-  keep_uncertainty_totn<-rbind(keep_uncertainty_totn,
+  keep_uncertainty_totn_ch<-rbind(keep_uncertainty_totn_ch,
                                parse_cor_rows(ttt,'total_population_n',species[x],yrs))
   
   take_em<-grep('fished_population_n',ttt)
@@ -111,7 +111,7 @@ for(x in 1:length(cor_files))
                     dn_m=as.numeric(zzz[nzchar(zzz)][3])-as.numeric(zzz[nzchar(zzz)][4])*1.96,
                     sd=as.numeric(zzz[nzchar(zzz)][4]),
                     Year=yrs[y])
-    keep_uncertainty_fishn<-rbind(keep_uncertainty_fishn,tmp)
+    keep_uncertainty_fishn_ch<-rbind(keep_uncertainty_fishn_ch,tmp)
   }
   
   yrs<-seq(outs_in[[x]]$styr,outs_in[[x]]$endyr)
@@ -401,7 +401,7 @@ for(x in 1:length(outs_in))
 {
   years<-seq(outs_in[[x]]$styr,outs_in[[x]]$endyr)
   rec_ts<-filter(keep_uncertainty_rec_ch,stock==species[x])
-  totn_ts<-filter(keep_uncertainty_totn,stock==species[x])
+  totn_ts<-filter(keep_uncertainty_totn_ch,stock==species[x])
   if(nrow(rec_ts)==0)
   {
     warning(paste("No recruits rows found in",cor_files[x],"- plotting",species[x],"recruitment without .cor uncertainty."))
